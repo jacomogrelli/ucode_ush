@@ -14,6 +14,10 @@ INC		=	ush.h
 INCS	=	$(addprefix $(INCD)/, $(INC))
 
 SRC		=	main.c \
+			mx_errors_cd.c \
+			mx_mystrsplit.c \
+			mx_e_too_many_arg_cd.c \
+			mx_printerr.c \
 
 SRCS	=	$(addprefix $(SRCD)/, $(SRC))
 OBJS	=	$(addprefix $(OBJD)/, $(SRC:%.c=%.o))

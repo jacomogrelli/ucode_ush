@@ -1,6 +1,8 @@
 #ifndef USH_H
 #define USH_H
          //------ POSIX C lib------
+#include "../libmx/inc/libmx.h"
+#include "ypratsovit.h"
 #include <aio.h>         // Asynchronous input and output
 #include <arpa/inet.h>   // Functions for manipulating numeric IP addresses (part of Berkeley sockets)
 #include <assert.h>      // Verify assumptions
