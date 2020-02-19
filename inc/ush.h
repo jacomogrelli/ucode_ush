@@ -1,6 +1,14 @@
 #ifndef USH_H
 #define USH_H
-         //------ POSIX C lib------
+
+//------other headers------
+#include "oenchaiev.h"
+#include "libmx.h"
+
+#define MX_COMLIST {"cd", "export", "unset", "fg", "exit", \
+                    "env", "pwd", "which", "echo"}
+
+//------ POSIX C lib------
 #include <aio.h>         // Asynchronous input and output
 #include <arpa/inet.h>   // Functions for manipulating numeric IP addresses (part of Berkeley sockets)
 #include <assert.h>      // Verify assumptions

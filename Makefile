@@ -14,11 +14,15 @@ INC		=	ush.h
 INCS	=	$(addprefix $(INCD)/, $(INC))
 
 SRC		=	main.c \
+			mx_ush_init.c \
+			mx_get_command.c \
 
 SRCS	=	$(addprefix $(SRCD)/, $(SRC))
 OBJS	=	$(addprefix $(OBJD)/, $(SRC:%.c=%.o))
 
 all: install
+
+$(FILE:a/%=%)
 
 install: $(LMXA) $(NAME)
 
