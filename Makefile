@@ -18,6 +18,8 @@ SRC		=	main.c \
 			mx_mystrsplit.c \
 			mx_e_too_many_arg_cd.c \
 			mx_printerr.c \
+			mx_dirorfile.c \
+			mx_e_no_dirorfile_cd.c \
 
 SRCS	=	$(addprefix $(SRCD)/, $(SRC))
 OBJS	=	$(addprefix $(OBJD)/, $(SRC:%.c=%.o))

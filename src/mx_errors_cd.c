@@ -1,5 +1,14 @@
 #include "ush.h"
 
+static void reverse_spaces(char *arguments) {
+    for (int i = 0; i < mx_strlen(arguments) - 1; i++) {
+        if (arguments[i + 1] == '\n')
+            arguments[i + 1] = '\0';
+        if (arguments[i] == '\\'  && arguments[i + 1] == ' ')
+            arguments[i + 1] = 1;
+    }    
+}
+
 static void change_spaces(char **splited_arg) {
     int count = 0;
 
@@ -30,13 +39,11 @@ bool mx_errors_cd (char *arguments) {
 
     buff_arg = mx_strnew(mx_strlen(arguments));
     buff_arg = mx_strcpy(buff_arg, arguments);
-    for (int i = 0; i < mx_strlen(buff_arg) - 1; i++) {
-        if (buff_arg[i] == '\\'  && buff_arg[i + 1] == ' ')
-            buff_arg[i + 1] = 1;
-    }
+    reverse_spaces(buff_arg);
     splited_arg = mx_mystrsplit(buff_arg, ' ');
     change_spaces(splited_arg);
     mx_e_too_many_arg_cd (splited_arg);
+    mx_e_no_dirorfile_cd(splited_arg);
     e_free_mem_err_cd(splited_arg, buff_arg);
     return res;
 }
