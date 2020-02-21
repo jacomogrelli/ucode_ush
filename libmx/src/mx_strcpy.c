@@ -11,4 +11,3 @@ char *mx_strcpy(char *dst, const char *src) {
 	dst[i] = '\0';
 	return dst;
 }
-

@@ -10,30 +10,50 @@ static char *get_first_com(char *command) {
 
 void mx_get_command(char *command) {
     char *com = get_first_com(command);
-
     if (!command)
         return;
-    printf("%d\n", strcmp("cd", com));
     if (!strcmp("cd", com)) {
+        mx_run_cd(command + strlen(com));
+        return;
+    }
+    if (!strcmp("export", com)) {
         printf("command - %s\n", com);
         return;
     }
-    if (strcmp("export", com) == 0)
+    if (!strcmp("unset", com)) {
         printf("command - %s\n", com);
-    if (strcmp("unset", com) == 0)
+        return;
+    }
+    if (!strcmp("fg", com)) {
         printf("command - %s\n", com);
-    if (strcmp("fg", com) == 0)
+        return;
+    }
+    if (!strcmp("exit", com)) {
         printf("command - %s\n", com);
-    if (strcmp("exit", com) == 0)
+        return;
+    }
+    if (!strcmp("env", com)) {
         printf("command - %s\n", com);
-    if (strcmp("env", com) == 0)
+        return;
+    }
+    if (!strcmp("pwd", com)) {
         printf("command - %s\n", com);
-    if (strcmp("pwd", com) == 0)
+        return;
+    }
+    if (!strcmp("which", com)) {
         printf("command - %s\n", com);
-    if (strcmp("which", com) == 0)
+        return;
+    }
+    if (!strcmp("echo", com)) {
         printf("command - %s\n", com);
-    if (strcmp("echo", com) == 0)
+        return;
+    }
+    if (!strcmp("./ush", com)) {
         printf("command - %s\n", com);
-    else
+        return;
+    }
+    else {
         printf("command is unbuiltin\n");
+        return;
+    }
 }

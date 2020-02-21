@@ -6,7 +6,7 @@
 #include "libmx.h"
 
 #define MX_COMLIST {"cd", "export", "unset", "fg", "exit", \
-                    "env", "pwd", "which", "echo"}
+                    "env", "pwd", "which", "echo", "./ush"}
 
 //------ POSIX C lib------
 #include <aio.h>         // Asynchronous input and output

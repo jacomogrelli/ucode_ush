@@ -8,9 +8,12 @@ void mx_ush_init(void) {
     while (1) {
         printf("u$h> ");
         getline(&input_line, &bufsize, stdin);
-        com = mx_strsplit(input_line, ';');
+        com = mx_strsplit(mx_strtrim(input_line), ';');
         for (int i = 0; com[i]; i++) {
             mx_get_command(com[i]);
         }
+        mx_del_strarr(&com);
+        mx_strdel(&input_line);
+        // system("leaks -q ush");
     }
 }

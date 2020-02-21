@@ -16,6 +16,8 @@ INCS	=	$(addprefix $(INCD)/, $(INC))
 SRC		=	main.c \
 			mx_ush_init.c \
 			mx_get_command.c \
+			mx_run_cd.c \
+			mx_run_exit.c \
 
 SRCS	=	$(addprefix $(SRCD)/, $(SRC))
 OBJS	=	$(addprefix $(OBJD)/, $(SRC:%.c=%.o))
