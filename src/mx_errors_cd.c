@@ -44,6 +44,8 @@ bool mx_errors_cd (char *arguments) {
     change_spaces(splited_arg);
     mx_e_too_many_arg_cd (splited_arg);
     mx_e_no_dirorfile_cd(splited_arg);
+    mx_e_notpwd_cd(splited_arg);
+    mx_e_nodir_after_split_pwd_cd(splited_arg);
     e_free_mem_err_cd(splited_arg, buff_arg);
     return res;
 }

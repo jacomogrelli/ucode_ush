@@ -20,6 +20,9 @@ SRC		=	main.c \
 			mx_printerr.c \
 			mx_dirorfile.c \
 			mx_e_no_dirorfile_cd.c \
+			mx_e_notpwd_cd.c \
+			mx_e_nodir_after_split_pwd_cd.c \
+			mx_my_repl_substr_cd.c \
 
 SRCS	=	$(addprefix $(SRCD)/, $(SRC))
 OBJS	=	$(addprefix $(OBJD)/, $(SRC:%.c=%.o))

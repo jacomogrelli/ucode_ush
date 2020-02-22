@@ -2,9 +2,7 @@
 
 double mx_pow(double n, unsigned int pow) {
 	double res = n;
-	if (pow < 0) {
-		return 1;
-	}
+
 	if (pow == 0) {
 		return 1;
 	}

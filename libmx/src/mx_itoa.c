@@ -7,8 +7,7 @@ static int num_len(int number) {
     int count;
 
     count = num <= 0 ? 1 : 0;
-    if (num < 0)
-        num = -num;
+
     while (num > 0) {
         count++;
         num = num / 10;
@@ -26,7 +25,7 @@ char *mx_itoa(int number) {
     str = mx_strnew(len);
     if ((sign = num) < 0)
         num = -num;
-    for (;i < len && num >= 0; i++) {
+    for (;i < len; i++) {
         str[i] = num % 10 + '0';
         num = num / 10;
     }
