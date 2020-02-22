@@ -16,6 +16,8 @@ static void change_spaces(char **splited_arg) {
         for (int i = 0; i < mx_strlen(splited_arg[count]); i++) {
             if (splited_arg[count][i] == 1)
                 splited_arg[count][i] = ' ';
+            if (splited_arg[count][i] == '\t')
+                splited_arg[count][i] = 1;
         }
         count++;
     }
