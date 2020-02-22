@@ -12,4 +12,7 @@ void mx_run_cd(char *args);
 //------builtins------
 int mx_run_exit(char *command);
 
+//------exec------
+void mx_run_exec(char *com);
+
 #endif

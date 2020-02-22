@@ -29,7 +29,7 @@ void mx_get_command(char *command) {
         return;
     }
     if (!strcmp("exit", com)) {
-        printf("command - %s\n", com);
+        mx_run_exit(command + strlen(com));
         return;
     }
     if (!strcmp("env", com)) {
@@ -53,7 +53,7 @@ void mx_get_command(char *command) {
         return;
     }
     else {
-        printf("command is unbuiltin\n");
+        mx_run_exec(com);
         return;
     }
 }
