@@ -9,7 +9,7 @@ void mx_e_nodir_after_split_pwd_cd(char **splited_arg) {
     }
     if (count == 2) {
         res_str = mx_my_repl_substr_cd(splited_arg[0], splited_arg[1]);
-        if (mx_dirorfile(res_str) != 0) {
+        if (mx_dirorfile(res_str) == -1) {
             mx_printerr("cd: no such file or directory: " );
             mx_printerr(res_str);
             mx_printerr("\n");
