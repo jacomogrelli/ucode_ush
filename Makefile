@@ -24,6 +24,8 @@ SRC		=	main.c \
 			mx_e_nodir_after_split_pwd_cd.c \
 			mx_my_repl_substr_cd.c \
 			mx_my_repl_substr.c \
+			mx_errors_for_comands.c \
+			mx_join_for_cd.c \
 
 SRCS	=	$(addprefix $(SRCD)/, $(SRC))
 OBJS	=	$(addprefix $(OBJD)/, $(SRC:%.c=%.o))

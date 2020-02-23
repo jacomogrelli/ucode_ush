@@ -23,6 +23,7 @@ char *mx_my_repl_substr(char *main_str, char *dst, char *src) {
         }
         return res_str;
     }
-    free(res_str);
+    if (strstr(main_str, dst))
+        free(res_str);
     return main_str;
 }
