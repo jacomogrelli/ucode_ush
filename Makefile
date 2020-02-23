@@ -19,6 +19,7 @@ SRC		=	main.c \
 			mx_run_cd.c \
 			mx_run_exit.c \
 			mx_run_exec.c \
+			mx_exec_err_out.c \
 
 SRCS	=	$(addprefix $(SRCD)/, $(SRC))
 OBJS	=	$(addprefix $(OBJD)/, $(SRC:%.c=%.o))
