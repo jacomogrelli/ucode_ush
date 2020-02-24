@@ -22,5 +22,7 @@ char *mx_my_repl_substr_cd(char *dst, char *src);
 char *mx_my_repl_substr(char *main_str, char *dst, char *src);
 void mx_errors_for_comands(char **splited_input, t_errors_cd *errors);
 char *mx_join_for_cd (char **splited_inp);
+void mx_change_pwd_in_cd(char **splited_arg);
+void mx_change_old_pwd_in_cd(char **splited_arg);
 
 #endif

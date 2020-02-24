@@ -13,8 +13,8 @@ int main(int argc, char **argv) {
     test_input[i] = mx_strnew(50);
   }
   test_input[0] = mx_strcpy(test_input[0], "cd");
-  test_input[1] = mx_strcpy(test_input[1], "/");
-  test_input[2] = mx_strcpy(test_input[2], ".");
+  test_input[1] = mx_strcpy(test_input[1], "~+");
+  test_input[2] = mx_strcpy(test_input[2], "~-");
   test_input[3] = NULL;
 //
   while (true) {

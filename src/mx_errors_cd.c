@@ -63,6 +63,8 @@ void mx_errors_cd (char **inp_line, t_errors_cd *errors) {
     reverse_spaces(buff_arg);
     splited_arg = mx_mystrsplit(buff_arg, ' ');
     change_spaces(splited_arg);
+    mx_change_pwd_in_cd(splited_arg);
+    mx_change_old_pwd_in_cd(splited_arg);
     change_home_dir(splited_arg);
     mx_e_too_many_arg_cd (splited_arg, errors);
     mx_e_no_dirorfile_cd(splited_arg, errors);
