@@ -28,6 +28,7 @@ SRC		=	main.c \
 			mx_join_for_cd.c \
 			mx_my_count_words.c \
 			mx_change_pwd_in_cd.c \
+			mx_parse_flags_cd.c \
 
 SRCS	=	$(addprefix $(SRCD)/, $(SRC))
 OBJS	=	$(addprefix $(OBJD)/, $(SRC:%.c=%.o))

@@ -7,8 +7,8 @@ typedef struct s_errors_cd {
 
 typedef struct s_flags_cd {
     bool s_flag;
-    bool u_flag;
     bool p_flag;
+    bool min_flag;
 } t_flags_cd;
 
 void mx_errors_cd (char **inp_line, t_errors_cd *errors);
@@ -24,5 +24,6 @@ void mx_errors_for_comands(char **splited_input, t_errors_cd *errors);
 char *mx_join_for_cd (char **splited_inp);
 void mx_change_pwd_in_cd(char **splited_arg);
 void mx_change_old_pwd_in_cd(char **splited_arg);
+int mx_my_count_words(const char *str, char c);
 
 #endif

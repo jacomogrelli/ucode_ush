@@ -57,15 +57,18 @@ void mx_errors_cd (char **inp_line, t_errors_cd *errors) {
     char **splited_arg = NULL;
     char *buff_arg = NULL;
     char *arguments = mx_join_for_cd(inp_line);
+    int count_var = mx_my_count_words(arguments, '~');
 
     buff_arg = mx_strnew(mx_strlen(arguments));
     buff_arg = mx_strcpy(buff_arg, arguments);
     reverse_spaces(buff_arg);
     splited_arg = mx_mystrsplit(buff_arg, ' ');
-    change_spaces(splited_arg);
-    mx_change_pwd_in_cd(splited_arg);
-    mx_change_old_pwd_in_cd(splited_arg);
-    change_home_dir(splited_arg);
+    if (count_var == 1) {
+        change_spaces(splited_arg);
+        mx_change_pwd_in_cd(splited_arg);
+        mx_change_old_pwd_in_cd(splited_arg);
+        change_home_dir(splited_arg);
+    }
     mx_e_too_many_arg_cd (splited_arg, errors);
     mx_e_no_dirorfile_cd(splited_arg, errors);
     mx_e_notpwd_cd(splited_arg, errors);
