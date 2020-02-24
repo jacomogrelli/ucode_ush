@@ -5,12 +5,12 @@
 // например
 // char *buf_com[] = {"ls", "-la", "libmx", NULL}
 
-void mx_ush_init(void) {
+void mx_ush_init(t_envp *var) {
     char *input_line;
     size_t bufsize;
     char **com;
     // char *buf_com[] = {"ls", "-la", "libmx", NULL};
-
+    if (var) // DELETE!!!
     while (1) {
         printf("u$h> ");
         getline(&input_line, &bufsize, stdin);

@@ -1,7 +1,6 @@
 #include "ush.h"
 
 void mx_run_exec(char **com) {
-    // char *comm[] = {"/bin/lsu", "-laz", "libmx", NULL};
     pid_t pid;
     pid_t wpid;
     int status;

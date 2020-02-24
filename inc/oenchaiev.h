@@ -1,11 +1,23 @@
 #ifndef ONECHAIEV_H
 #define ONECHAIEV_H
 
-#define MX_BIN {"cd", "echo"}
-#define MX_FLAGS "echo"
+/* структура для переменных среды, которую принимаем перед
+инициализацией ush, передаем в нее и меняем, если это делает оригиная
+функция */
+typedef struct s_envp {
+    char *name;
+    char *val;
+    struct s_envp *next;
+} t_envp;
 
 //------main part------
-void mx_ush_init(void);
+//заполнение структуры переменных среды
+t_envp *mx_envp_fill(char **envp);
+//выделение памяти и зануление следующего елемента s_envp
+void mx_envp_add(t_envp **res, char *data);
+//замена текущего элемента s_envp
+void mx_envp_replace(t_envp **res, char *data);
+void mx_ush_init(t_envp *var);
 void mx_get_command(char **command);
 void mx_run_cd(char *args);
 void mx_push_var();
