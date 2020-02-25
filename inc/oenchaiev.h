@@ -23,7 +23,7 @@ void mx_run_cd(char *args);
 void mx_push_var();
 
 //------builtins------
-int mx_run_exit(t_envp **var, char *com);
+int mx_run_exit(t_envp **var, char **com);
 
 //------exec------
 void mx_run_exec(char **com);

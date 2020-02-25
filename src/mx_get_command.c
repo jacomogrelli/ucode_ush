@@ -21,7 +21,7 @@ void mx_get_command(t_envp **var, char **com) {
         return;
     }
     if (!strcmp("exit", com[0])) {
-        mx_run_exit(var, com[0]);
+        mx_run_exit(var, com);
         return;
     }
     if (!strcmp("env", com[0])) {
