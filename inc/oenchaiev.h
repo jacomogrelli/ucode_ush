@@ -18,7 +18,7 @@ void mx_envp_add(t_envp **res, char *data);
 //замена текущего элемента s_envp
 void mx_envp_replace(t_envp **res, char *data);
 void mx_ush_init(t_envp *var);
-void mx_get_command(char **command);
+void mx_get_command(t_envp **var, char **com);
 void mx_run_cd(char *args);
 void mx_push_var();
 

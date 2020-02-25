@@ -17,5 +17,6 @@ int mx_run_exit(t_envp **var, char *command) {
     bool err = false;
     int i = get_exit_status(command, &err);
 
+    var = NULL;
     exit (i);
 }

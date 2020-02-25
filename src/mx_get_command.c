@@ -1,6 +1,6 @@
 #include "ush.h"
 
-void mx_get_command(char **com) {
+void mx_get_command(t_envp **var, char **com) {
 
     if (!com)
         return;
@@ -21,7 +21,7 @@ void mx_get_command(char **com) {
         return;
     }
     if (!strcmp("exit", com[0])) {
-        mx_run_exit(com[0]);
+        mx_run_exit(var, com[0]);
         return;
     }
     if (!strcmp("env", com[0])) {
