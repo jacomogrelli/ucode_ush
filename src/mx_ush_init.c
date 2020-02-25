@@ -9,11 +9,8 @@ void mx_ush_init(t_envp *var) {
     char *input_line;
     size_t bufsize = 0;
     char **com;
+
     setenv("?", "0", 1);
-
-
-    // char *buf_com[] = {"ls", "-la", "libmx", NULL};
-    if (var) // DELETE!!!
     while (1) {
         printf("u$h> ");
         getline(&input_line, &bufsize, stdin);
