@@ -1,6 +1,7 @@
 #include "ush.h"
 
 void mx_get_command(char **com) {
+
     if (!com)
         return;
     if (!strcmp("cd", com[0])) {
