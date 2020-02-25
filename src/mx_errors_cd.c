@@ -58,20 +58,22 @@ void mx_errors_cd (char **inp_line, t_errors_cd *errors) {
     char *buff_arg = NULL;
     char *arguments = mx_join_for_cd(inp_line);
     int count_var = mx_my_count_words(arguments, '~');
+    t_flags_cd *flags_cd =NULL;
 
     buff_arg = mx_strnew(mx_strlen(arguments));
     buff_arg = mx_strcpy(buff_arg, arguments);
     reverse_spaces(buff_arg);
     splited_arg = mx_mystrsplit(buff_arg, ' ');
+    change_spaces(splited_arg);
+    flags_cd = mx_parse_flags_cd(splited_arg);
     if (count_var == 1) {
-        change_spaces(splited_arg);
         mx_change_pwd_in_cd(splited_arg);
         mx_change_old_pwd_in_cd(splited_arg);
         change_home_dir(splited_arg);
     }
-    mx_e_too_many_arg_cd (splited_arg, errors);
-    mx_e_no_dirorfile_cd(splited_arg, errors);
-    mx_e_notpwd_cd(splited_arg, errors);
-    mx_e_nodir_after_split_pwd_cd(splited_arg, errors);
+    mx_e_too_many_arg_cd (splited_arg, errors, flags_cd);
+    mx_e_no_dirorfile_cd(splited_arg, errors, flags_cd);
+    mx_e_notpwd_cd(splited_arg, errors,flags_cd);
+    mx_e_nodir_after_split_pwd_cd(splited_arg, errors, flags_cd);
     e_free_mem_err_cd(splited_arg, buff_arg, arguments);
 }

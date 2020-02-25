@@ -6,18 +6,18 @@ char *mx_join_for_cd (char **splited_inp) {
     int count = 1;
 
     while (splited_inp[count]) {
-        if (count == 1) {
-            if (!strstr(splited_inp[count], "-"))
-                buff = mx_strjoin(res, splited_inp[count]);
-                res = mx_strjoin(buff, " ");
-                free(buff);
-        }
-        else {
+        // if (count == 1) {
+        //     if (!strstr(splited_inp[count], "-"))
+        //         buff = mx_strjoin(res, splited_inp[count]);
+        //         res = mx_strjoin(buff, " ");
+        //         free(buff);
+        // }
+        // else {
             buff = mx_strjoin(res, splited_inp[count]);
             free(res);
             res = mx_strjoin(buff, " ");
             free(buff);
-        }
+        //}
         count++;
     }
     return res; 
