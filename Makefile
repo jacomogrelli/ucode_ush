@@ -29,11 +29,20 @@ SRC		=	main.c \
 			mx_my_count_words.c \
 			mx_change_pwd_in_cd.c \
 			mx_parse_flags_cd.c \
+			mx_ush_init.c \
+			mx_get_command.c \
+			mx_run_cd.c \
+			mx_run_exit.c \
+			mx_run_exec.c \
+			mx_exec_err_out.c \
+			mx_envp_pack.c \
 
 SRCS	=	$(addprefix $(SRCD)/, $(SRC))
 OBJS	=	$(addprefix $(OBJD)/, $(SRC:%.c=%.o))
 
 all: install
+
+$(FILE:a/%=%)
 
 install: $(LMXA) $(NAME)
 

@@ -12,4 +12,3 @@ void mx_str_reverse(char *s) {
         mx_swap_char(&s[len - i - 1], &s[i]);
     }
  }
-

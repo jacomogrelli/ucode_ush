@@ -1,6 +1,8 @@
 #ifndef YPRATSOVIT_H
 #define YPRATSOVIT_H
 
+#include "posix_lib.h"
+
 typedef struct s_errors_cd {
     int returned_value;
 } t_errors_cd;
