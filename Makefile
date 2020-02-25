@@ -14,6 +14,21 @@ INC		=	ush.h
 INCS	=	$(addprefix $(INCD)/, $(INC))
 
 SRC		=	main.c \
+			mx_errors_cd.c \
+			mx_mystrsplit.c \
+			mx_e_too_many_arg_cd.c \
+			mx_printerr.c \
+			mx_dirorfile.c \
+			mx_e_no_dirorfile_cd.c \
+			mx_e_notpwd_cd.c \
+			mx_e_nodir_after_split_pwd_cd.c \
+			mx_my_repl_substr_cd.c \
+			mx_my_repl_substr.c \
+			mx_errors_for_comands.c \
+			mx_join_for_cd.c \
+			mx_my_count_words.c \
+			mx_change_pwd_in_cd.c \
+			mx_parse_flags_cd.c \
 			mx_ush_init.c \
 			mx_get_command.c \
 			mx_run_cd.c \
