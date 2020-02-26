@@ -26,7 +26,7 @@ void mx_push_var();
 int mx_run_exit(t_envp **var, char **com);
 
 //------exec------
-void mx_run_exec(char **com);
-void mx_exec_err_out(char *com, int err);
+void mx_run_exec(char **com, t_envp **var);
+void mx_exec_err_out(char *com, int err, t_envp **var);
 
 #endif

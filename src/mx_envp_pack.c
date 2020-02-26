@@ -6,7 +6,11 @@ void mx_envp_replace(t_envp **res, char *data) {
     char *buf_name = strndup(data, mx_get_char_index(data, '='));
 
     //ищем, есть ли в нашей структуре такая
+    printf("head name = %s\n", head->name);
+    printf("################TEST#############\n");
+        printf("buf name = %s\n", buf_name);
     while (head) {
+
         if (!strcmp(head->name, buf_name)) {
             //если нашли, удаляем старое значение и заталкиваем новое
             mx_strdel(&head->val);
@@ -16,10 +20,12 @@ void mx_envp_replace(t_envp **res, char *data) {
             mx_strdel(&buf_name);
             return;
         }
+
         head = head->next;
     }
     //если не нашли, удаляем буфер от ликов и заталкиваем в начало.
     mx_strdel(&buf_name);
+
     mx_envp_add (res, data);
 }
 

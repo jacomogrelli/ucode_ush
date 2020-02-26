@@ -45,7 +45,7 @@ void mx_get_command(t_envp **var, char **com) {
         return;
     }
     else {
-        mx_run_exec(com);
+        mx_run_exec(com, var);
         return;
     }
 }
