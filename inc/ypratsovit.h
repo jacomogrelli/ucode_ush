@@ -37,5 +37,6 @@ int mx_my_count_words(const char *str, char c);
 void mx_parse_flags_cd (char **splited_arg, t_flags_cd *flags_cd);
 void mx_run_cd_commnd(char **splited_input);
 void mx_cd_without_flags(char **splited_arg, t_dirs_cd *dirs_cd);
+void mx_cd_with_flags(char **splited_arg, t_dirs_cd *dirs_cd, t_flags_cd *flags_cd);
 
 #endif

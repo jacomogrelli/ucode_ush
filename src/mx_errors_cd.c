@@ -51,6 +51,7 @@ char **mx_errors_cd (char **inp_line, t_errors_cd *errors, t_flags_cd *flags_cd)
     char *buff_arg = NULL;
     char *arguments = mx_join_for_cd(inp_line);
     int count_var = mx_my_count_words(arguments, '~');
+
     if (inp_line[1]) {
         buff_arg = mx_strnew(mx_strlen(arguments));
         buff_arg = mx_strcpy(buff_arg, arguments);

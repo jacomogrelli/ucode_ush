@@ -16,12 +16,13 @@ static void init_flags_cd(t_flags_cd *flags_cd) {
 
 static void free_mem(char **splited_arg, t_flags_cd *flags_cd, t_errors_cd *errors, t_dirs_cd *dirs_cd) {
     int count = 0;
-
-    while (splited_arg[count]) {
-            free(splited_arg[count]);
-        count++;
+    if (splited_arg) {
+        while (splited_arg[count]) {
+                free(splited_arg[count]);
+            count++;
+        }
+        free(splited_arg);
     }
-    free(splited_arg);
     free(flags_cd);
     free(errors);
     free(dirs_cd);
@@ -37,8 +38,12 @@ void mx_run_cd_commnd(char **splited_input) {
         t_get_dirs_cd(dirs_cd);
         splited_arg = mx_errors_for_comands(splited_input, flags_cd, errors);
         if (errors->returned_value == 0) {
-            mx_cd_without_flags(splited_arg, dirs_cd);
-            exit(0);
+            if (!flags_cd->act_flag) {
+                mx_cd_without_flags(splited_arg, dirs_cd);
+            }
+            else {
+                mx_cd_with_flags(splited_arg, dirs_cd, flags_cd);
+            }
         }
         free_mem(splited_arg, flags_cd, errors, dirs_cd);
 }

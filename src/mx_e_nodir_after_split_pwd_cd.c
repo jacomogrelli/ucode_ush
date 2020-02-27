@@ -5,6 +5,7 @@ void mx_e_nodir_after_split_pwd_cd(char **splited_arg, t_errors_cd *errors, t_fl
     char *res_str = NULL;
     int count_arg = 2;
     int which_arg = 0;
+    errno = 0;
 
     if (flags_cd->act_flag == true) {
         count_arg = 3;
@@ -21,6 +22,15 @@ void mx_e_nodir_after_split_pwd_cd(char **splited_arg, t_errors_cd *errors, t_fl
                 mx_printerr(res_str);
                 mx_printerr("\n");
                 errors->returned_value = 1;
+            }
+            else {
+                opendir(res_str);
+                if (errno == 13) {
+                    mx_printerr("cd: permission denied:" );
+                    mx_printerr(res_str);
+                    mx_printerr("\n");
+                    errors->returned_value = 1;
+                }
             }
             free(res_str);
         }
