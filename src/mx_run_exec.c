@@ -1,6 +1,6 @@
 #include "ush.h"
 
-static void err_helper(char *buf, t_envp *var, int sw, int err) {
+static void err_helper(char *buf, t_envp **var, int sw, int err) {
     errno = err;
 
     switch (sw) {
@@ -24,7 +24,7 @@ static void err_helper(char *buf, t_envp *var, int sw, int err) {
     }
 }
 
-void mx_exec_err_out(char *com, int err, t_envp *var) {
+void mx_exec_err_out(char *com, int err, t_envp **var) {
     char *buf = mx_strjoin("ush: ", com);
     errno = err;
     DIR *dp;
@@ -47,7 +47,7 @@ void mx_exec_err_out(char *com, int err, t_envp *var) {
     free(buf);
 }
 
-void mx_run_exec(char **com, t_envp *var) {
+void mx_run_exec(char **com, t_envp **var) {
     pid_t pid;
     pid_t wpid;
     int status;
