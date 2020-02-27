@@ -5,7 +5,7 @@ void mx_get_command(t_envp **var, char **com) {
     if (!com)
         return;
     if (!strcmp("cd", com[0])) {
-        mx_errors_for_comands(com);
+        mx_run_cd_commnd(com);
         printf("command - %s\n", com[0]);
         return;
     }

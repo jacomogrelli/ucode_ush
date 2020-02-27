@@ -1,8 +1,10 @@
 #include "ush.h"
 
-void mx_errors_for_comands(char **splited_input) {
-    t_errors_cd *errors = (t_errors_cd *)malloc(sizeof(t_errors_cd));
+char **mx_errors_for_comands(char **splited_input, t_flags_cd *flags_cd, t_errors_cd *errors) {
     errors->returned_value = 0;
+    char **splited_arg = NULL;
+
     if (mx_strcmp(splited_input[0], "cd") == 0)
-        mx_errors_cd(splited_input, errors);
+        splited_arg = mx_errors_cd(splited_input, errors, flags_cd);
+    return splited_arg;
 }
