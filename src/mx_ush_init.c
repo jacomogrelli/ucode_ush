@@ -16,7 +16,7 @@ void mx_ush_init(t_envp *var) {
         getline(&input_line, &bufsize, stdin);
         com = mx_strsplit(mx_strtrim(input_line), ' ');
         // for (int i = 0; com[i]; i++) {
-            mx_get_command(&var, com);
+            mx_get_command(var, com);
         // }
         mx_del_strarr(&com);
         mx_strdel(&input_line);

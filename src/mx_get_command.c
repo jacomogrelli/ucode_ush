@@ -1,6 +1,6 @@
 #include "ush.h"
 
-void mx_get_command(t_envp **var, char **com) {
+void mx_get_command(t_envp *var, char **com) {
 
     if (!com)
         return;

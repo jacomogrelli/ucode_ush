@@ -1,14 +1,14 @@
 #include "ush.h"
 
-void mx_envp_replace(t_envp **res, char *data) {
-    t_envp *head = *res;
+void mx_envp_replace(t_envp *res, char *data) {
+    t_envp *head = res;
     //копируем имя переменной
     char *buf_name = strndup(data, mx_get_char_index(data, '='));
 
     //ищем, есть ли в нашей структуре такая
-    printf("head name = %s\n", head->name);
+    // printf("head name = %s\n", head->name);
     printf("################TEST#############\n");
-        printf("buf name = %s\n", buf_name);
+        // printf("buf name = %s\n", buf_name);
     while (head) {
 
         if (!strcmp(head->name, buf_name)) {
@@ -29,7 +29,7 @@ void mx_envp_replace(t_envp **res, char *data) {
     mx_envp_add (res, data);
 }
 
-void mx_envp_add(t_envp **res, char *data) {
+void mx_envp_add(t_envp *res, char *data) {
     t_envp *buf = NULL;
 
     //создаем ноду
@@ -39,13 +39,13 @@ void mx_envp_add(t_envp **res, char *data) {
                            strlen(data) - mx_get_char_index(data, '='));
     buf->next = NULL;
     //проверка на пустую структуру
-    if (!*res) {
-        *res = buf;
+    if (!res) {
+        res = buf;
         return;
     }
     //заталкиваем в начало
-    buf->next = *res;
-    *res = buf;
+    buf->next = res;
+    res = buf;
 }
 
 t_envp *mx_envp_fill(char **envp) {
@@ -53,7 +53,7 @@ t_envp *mx_envp_fill(char **envp) {
 
     for (int i = 0; envp[i]; i++) {
         //заполняем принимаемые main переменные среды в свою собственную
-        mx_envp_add(&res, envp[i]);
+        mx_envp_add(res, envp[i]);
     }
     return res;
 }
