@@ -4,9 +4,9 @@ void mx_envp_replace(t_envp **res, char *data) {
     t_envp *head = *res;
     //копируем имя переменной
     char *buf_name = strndup(data, mx_get_char_index(data, '='));
-
     //ищем, есть ли в нашей структуре такая
     while (head) {
+
         if (!strcmp(head->name, buf_name)) {
             //если нашли, удаляем старое значение и заталкиваем новое
             mx_strdel(&head->val);
@@ -16,10 +16,12 @@ void mx_envp_replace(t_envp **res, char *data) {
             mx_strdel(&buf_name);
             return;
         }
+
         head = head->next;
     }
     //если не нашли, удаляем буфер от ликов и заталкиваем в начало.
     mx_strdel(&buf_name);
+
     mx_envp_add (res, data);
 }
 
@@ -49,5 +51,6 @@ t_envp *mx_envp_fill(char **envp) {
         //заполняем принимаемые main переменные среды в свою собственную
         mx_envp_add(&res, envp[i]);
     }
+    mx_envp_add(&res, "?=0");
     return res;
 }

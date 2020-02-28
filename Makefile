@@ -34,7 +34,6 @@ SRC		=	main.c \
 			mx_run_cd.c \
 			mx_run_exit.c \
 			mx_run_exec.c \
-			mx_exec_err_out.c \
 			mx_envp_pack.c \
 			mx_run_cd_command.c \
 			mx_cd_without_flags.c \

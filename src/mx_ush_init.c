@@ -6,23 +6,26 @@
 // char *buf_com[] = {"ls", "-la", "libmx", NULL}
 
 void mx_ush_init(t_envp *var) {
-    char *input_line;
-    size_t bufsize = 0;
+    size_t bufsize = 1;
+    char *input_line = malloc(sizeof (char) * (int)bufsize);
     char **com;
-    setenv("?", "0", 1);
 
-
-    // char *buf_com[] = {"ls", "-la", "libmx", NULL};
-    if (var) // DELETE!!!
     while (1) {
-        printf("u$h> ");
-        getline(&input_line, &bufsize, stdin);
+        if (isatty(0)) //проверка наличия перенаправления потока вывода
+            printf("u$h> ");
+        if (getline(&input_line, &bufsize, stdin) < 0)
+            //чекаем будет ли ввод, для "echo "ls -la" | ./ush
+            exit (EXIT_SUCCESS);
         com = mx_strsplit(mx_strtrim(input_line), ' ');
-        // for (int i = 0; com[i]; i++) {
-            mx_get_command(&var, com);
-        // }
-        mx_del_strarr(&com);
+        if (com[0]) {
+            mx_get_command(var, com);
+            mx_del_strarr(&com);
+            }
         mx_strdel(&input_line);
         // system("leaks -q ush");
     }
 }
+
+        // mx_printstr("iteration - ");
+        // mx_printint(count);
+        // mx_printchar('\n');
