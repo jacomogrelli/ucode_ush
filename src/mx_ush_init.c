@@ -11,6 +11,8 @@ void mx_ush_init(t_envp *var) {
     char **com;
 
     while (1) {
+        mx_printstr(var->val);
+        mx_printchar('\n');
         if (isatty(0)) //проверка наличия перенаправления потока вывода
             printf("u$h> ");
         if (getline(&input_line, &bufsize, stdin) < 0)
