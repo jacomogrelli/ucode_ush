@@ -2,6 +2,7 @@
 
 void mx_e_no_dirorfile_cd (char **splited_arg, t_errors_cd *errors, t_flags_cd *flags_cd) {
     int count = 0;
+    errno = 0;
 
     if (errors->returned_value == 0) {
         while (splited_arg[count]) {
@@ -20,6 +21,15 @@ void mx_e_no_dirorfile_cd (char **splited_arg, t_errors_cd *errors, t_flags_cd *
                     mx_printerr(splited_arg[0]);
                     mx_printerr("\n");
                     errors->returned_value = 1;
+                }
+                else {
+                    opendir(splited_arg[0]);
+                    if (errno == 13) {
+                        mx_printerr("cd: permission denied: ");
+                        mx_printerr(splited_arg[0]);
+                        mx_printerr("\n");
+                        errors->returned_value = 1;
+                    }
                 }
             }
         }
