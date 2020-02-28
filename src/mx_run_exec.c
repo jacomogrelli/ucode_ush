@@ -28,7 +28,6 @@ void mx_exec_err_out(char *com, int err, t_envp *var) {
     char *buf = mx_strjoin("ush: ", com);
     errno = err;
     DIR *dp;
-    printf("errno = %d", err);
 
     if (err == 2 && mx_get_char_index(com, '/') < 0) {
         err_helper(buf, var, 1, errno);
