@@ -84,6 +84,7 @@
 #include <wchar.h>       // Wide-Character Handling, see C string handling
 #include <wctype.h>      // Wide-Character Classification and Mapping Utilities, see C character classification
 #include <wordexp.h>     // Word-expansion like the shell would perform
+#include <malloc/malloc.h>
 
 
 #endif

@@ -4,11 +4,7 @@ void mx_envp_replace(t_envp **res, char *data) {
     t_envp *head = *res;
     //копируем имя переменной
     char *buf_name = strndup(data, mx_get_char_index(data, '='));
-
     //ищем, есть ли в нашей структуре такая
-    printf("head name = %s\n", head->name);
-    printf("################TEST#############\n");
-        printf("buf name = %s\n", buf_name);
     while (head) {
 
         if (!strcmp(head->name, buf_name)) {
@@ -55,5 +51,6 @@ t_envp *mx_envp_fill(char **envp) {
         //заполняем принимаемые main переменные среды в свою собственную
         mx_envp_add(&res, envp[i]);
     }
+    mx_envp_add(&res, "?=0");
     return res;
 }

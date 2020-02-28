@@ -10,6 +10,8 @@ typedef struct s_envp {
     struct s_envp *next;
 } t_envp;
 
+//delete me
+
 //------main part------
 //заполнение структуры переменных среды
 t_envp *mx_envp_fill(char **envp);
@@ -18,15 +20,15 @@ void mx_envp_add(t_envp **res, char *data);
 //замена текущего элемента s_envp
 void mx_envp_replace(t_envp **res, char *data);
 void mx_ush_init(t_envp *var);
-void mx_get_command(t_envp **var, char **com);
+void mx_get_command(t_envp *var, char **com);
 void mx_run_cd(char *args);
 void mx_push_var();
 
 //------builtins------
-int mx_run_exit(t_envp **var, char **com);
+void mx_run_exit(t_envp *var, char **com);
 
 //------exec------
-void mx_run_exec(char **com, t_envp **var);
-void mx_exec_err_out(char *com, int err, t_envp **var);
+void mx_run_exec(char **com, t_envp *var);
+void mx_exec_err_out(char *com, int err, t_envp *var);
 
 #endif
