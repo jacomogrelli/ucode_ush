@@ -28,7 +28,7 @@ static void free_mem(char **splited_arg, t_flags_cd *flags_cd, t_errors_cd *erro
     free(dirs_cd);
 }
 
-void mx_run_cd_commnd(char **splited_input) {
+void mx_run_cd_commnd(t_envp *var, char **splited_input) {
         t_flags_cd *flags_cd = (t_flags_cd *)malloc(sizeof(t_flags_cd));
         t_errors_cd *errors = (t_errors_cd *)malloc(sizeof(t_errors_cd));
         t_dirs_cd *dirs_cd = (t_dirs_cd *)malloc(sizeof(t_dirs_cd));
@@ -45,5 +45,7 @@ void mx_run_cd_commnd(char **splited_input) {
                 mx_cd_with_flags(splited_arg, dirs_cd, flags_cd);
             }
         }
+        else
+            mx_envp_replace(&var, "?=1");
         free_mem(splited_arg, flags_cd, errors, dirs_cd);
 }
