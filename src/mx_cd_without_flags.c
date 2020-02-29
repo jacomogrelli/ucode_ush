@@ -11,6 +11,7 @@ static void cd_with_one_arg(char **splited_arg, t_dirs_cd *dirs_cd) {
         else {
             setenv("OLDPWD", dirs_cd->get_pwd, 1);
         }
+        printf("%s ", getenv("PWD"));
     }
 }
 

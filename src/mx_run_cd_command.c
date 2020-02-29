@@ -14,7 +14,8 @@ static void init_flags_cd(t_flags_cd *flags_cd) {
 }
 
 
-static void free_mem(char **splited_arg, t_flags_cd *flags_cd, t_errors_cd *errors, t_dirs_cd *dirs_cd) {
+static void free_mem(char **splited_arg, t_flags_cd *flags_cd,
+                    t_errors_cd *errors, t_dirs_cd *dirs_cd) {
     int count = 0;
     if (splited_arg) {
         while (splited_arg[count]) {
@@ -42,7 +43,7 @@ void mx_run_cd_commnd(t_envp *var, char **splited_input) {
                 mx_cd_without_flags(splited_arg, dirs_cd);
             }
             else {
-                mx_cd_with_flags(splited_arg, dirs_cd, flags_cd);
+                mx_cd_with_flags(splited_arg, dirs_cd, flags_cd, errors);
             }
         }
         else

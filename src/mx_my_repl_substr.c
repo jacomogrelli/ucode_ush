@@ -16,7 +16,8 @@ char *mx_my_repl_substr(char *main_str, char *dst, char *src) {
                 count++;
             }
             else {
-                for (count = first_find + mx_strlen(dst); count < mx_strlen(main_str); count++, i++)
+                for (count = first_find + mx_strlen(dst); count
+                    < mx_strlen(main_str); count++, i++)
                     res_str[i] = main_str[count];
                 break;
             }

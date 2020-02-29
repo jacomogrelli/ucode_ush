@@ -46,7 +46,8 @@ static void e_free_mem_err_cd (char *buff_arg, char *arguments) {;
     free(arguments);
 }
 
-char **mx_errors_cd (char **inp_line, t_errors_cd *errors, t_flags_cd *flags_cd) {
+char **mx_errors_cd (char **inp_line, t_errors_cd *errors,
+                    t_flags_cd *flags_cd) {
     char **splited_arg = NULL;
     char *buff_arg = NULL;
     char *arguments = mx_join_for_cd(inp_line);

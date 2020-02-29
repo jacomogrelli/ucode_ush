@@ -15,7 +15,8 @@ char *mx_my_repl_substr_cd(char *dst, char *src) {
             count++;
         }
         else {
-            for (count = first_find + mx_strlen(dst); count < mx_strlen(env_str); count++, i++) {
+            for (count = first_find + mx_strlen(dst); count
+                < mx_strlen(env_str); count++, i++) {
                 res_str[i] = env_str[count];
             }
             break;
