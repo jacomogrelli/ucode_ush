@@ -48,5 +48,5 @@ void mx_run_cd_commnd(t_envp *var, char **splited_input) {
         }
         else
             mx_envp_replace(&var, "?=1");
-        free_mem(splited_arg, flags_cd, errors, dirs_cd);
+            free_mem(splited_arg, flags_cd, errors, dirs_cd);
 }
