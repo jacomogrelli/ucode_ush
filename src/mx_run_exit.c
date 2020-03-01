@@ -1,8 +1,19 @@
 #include "ush.h"
 
-static int get_exit_status(char **com, int count, bool *err) {
+static int get_question_mark (t_envp *var) {
+    t_envp *head = var;
+
+    while (head) {
+        if (head->name[0] == '?' && head->name[1] == '\0')
+            return atoi(head->val);
+        head = head->next;
+    }
+    return 0;
+}
+
+static int get_exit_status(char **com, int count, bool *err, t_envp *var) {
     if (count == 1)
-        return 0;
+        return get_question_mark(var);
     if (count != 1) {
         for (int i = 0; com[1][i]; i++) {
             if (com[1][0] == '+' || com[1][0] == '-')
@@ -48,7 +59,7 @@ void mx_run_exit(t_envp *var, char **command) {
 
      while (command[count])
         count++;
-    int i = get_exit_status(command, count, &err);
+    int i = get_exit_status(command, count, &err, var);
     if (count != 1 && err && i != -1) {
         mx_envp_replace(&var, "?=1");
         exit_err(command[1], 1);
