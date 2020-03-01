@@ -1,6 +1,8 @@
 #ifndef ONECHAIEV_H
 #define ONECHAIEV_H
 
+#define MX_ISLNK(m)      (((m) & S_IFMT) == S_IFLNK)  /* 'l'symbolic link */
+
 /* структура для переменных среды, которую принимаем перед
 инициализацией ush, передаем в нее и меняем, если это делает оригиная
 функция */
@@ -25,7 +27,10 @@ void mx_run_cd(char *args);
 void mx_push_var();
 
 //------builtins------
+//------exit------
 void mx_run_exit(t_envp *var, char **com);
+//------pwd------
+void mx_pwd_run(t_envp *var, char **com);
 
 //------exec------
 void mx_run_exec(char **com, t_envp *var);
