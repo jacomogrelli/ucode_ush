@@ -31,6 +31,8 @@ void mx_push_var();
 void mx_run_exit(t_envp *var, char **com);
 //------pwd------
 void mx_pwd_run(t_envp *var, char **com);
+//------which------
+void mx_which_run(t_envp *var, char **com);
 
 //------exec------
 void mx_run_exec(char **com, t_envp *var);

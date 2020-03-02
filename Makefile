@@ -39,6 +39,7 @@ SRC		=	main.c \
 			mx_cd_without_flags.c \
 			mx_cd_with_flags.c \
 			mx_pwd_run.c \
+			mx_which_run.c \
 
 SRCS	=	$(addprefix $(SRCD)/, $(SRC))
 OBJS	=	$(addprefix $(OBJD)/, $(SRC:%.c=%.o))
