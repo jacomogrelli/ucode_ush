@@ -20,6 +20,13 @@ typedef struct s_dirs_cd {
     char *get_old_pwd;
 } t_dirs_cd;
 
+typedef struct s_flags_echo {
+    bool n_flag;
+    bool e_flag;
+    bool E_flag;
+    bool act_flag;
+} t_flags_echo;
+
 char **mx_errors_cd (char **inp_line, t_errors_cd *errors, t_flags_cd *flags_cd);
 char **mx_mystrsplit(const char *s, char c);
 void mx_e_too_many_arg_cd (char **splited_arg, t_errors_cd *errors, t_flags_cd *flags_cd);
@@ -39,5 +46,5 @@ void mx_run_cd_commnd(t_envp *var, char **splited_input);
 void mx_cd_without_flags(char **splited_arg, t_dirs_cd *dirs_cd);
 void mx_cd_with_flags(char **splited_arg, t_dirs_cd *dirs_cd, t_flags_cd *flags_cd, t_errors_cd *errors);
 void mx_set_correct_path();
-
+void mx_run_echo_command(char **splited_arg);
 #endif
