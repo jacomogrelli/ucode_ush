@@ -1,6 +1,8 @@
 #ifndef ONECHAIEV_H
 #define ONECHAIEV_H
 
+#include "libmx.h"
+
 #define MX_ISLNK(m)      (((m) & S_IFMT) == S_IFLNK)  /* 'l'symbolic link */
 
 /* структура для переменных среды, которую принимаем перед
@@ -11,6 +13,14 @@ typedef struct s_envp {
     char *val;
     struct s_envp *next;
 } t_envp;
+
+//структура для which
+typedef struct s_wh {
+    char **path;
+    char *flags;
+    int pos;
+    t_list *find;
+} t_wh;
 
 //delete me
 
