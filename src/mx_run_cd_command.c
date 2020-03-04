@@ -1,6 +1,6 @@
 #include "ush.h"
 
-static void t_get_dirs_cd(t_dirs_cd *dirs_cd) {
+static void get_dirs_cd(t_dirs_cd *dirs_cd) {
     dirs_cd->get_home = getenv("HOME");
     dirs_cd->get_old_pwd = getenv("OLDPWD");
     dirs_cd->get_pwd = getenv("PWD");
@@ -36,7 +36,7 @@ void mx_run_cd_commnd(t_envp *var, char **splited_input) {
         char **splited_arg = NULL;
 
         init_flags_cd(flags_cd);
-        t_get_dirs_cd(dirs_cd);
+        get_dirs_cd(dirs_cd);
         splited_arg = mx_errors_for_comands(splited_input, flags_cd, errors);
         if (errors->returned_value == 0) {
             if (!flags_cd->act_flag) {

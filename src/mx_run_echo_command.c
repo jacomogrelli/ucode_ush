@@ -1,7 +1,23 @@
 #include "ush.h"
 
-static void e_flag_echo(char *splited_str) {
+static void change_til(char **str) {
+    char *get_home = getenv("HOME");
+    char *get_pwd = getenv("PWD");
+    char *get_old_pwd = getenv("OLDPWD");
+    int count = 0;
 
+    while (str[count]) {
+        if (mx_strcmp(str[count], "~") == 0)
+            str[count] = mx_my_repl_substr(str[count], "~", get_home);
+        if (mx_strcmp(str[count], "~+") == 0)
+            str[count] = mx_my_repl_substr(str[count], "~+", get_pwd);
+        if (mx_strcmp(str[count], "~-") == 0)
+        str[count] = mx_my_repl_substr(str[count], "~-", get_old_pwd);
+        count++;
+    }
+}
+
+static void e_flag_echo(char *splited_str) {
     char *buf = mx_strnew(mx_strlen(splited_str));
     int count = 0;
 
@@ -13,6 +29,7 @@ static void e_flag_echo(char *splited_str) {
         count++;
     }
     printf("%s", buf);
+    free(buf);
 }
 
 static void init_flags_echo(char **splited_input, t_flags_echo *flags_echo) {
@@ -64,6 +81,7 @@ void mx_run_echo_command(t_envp *var, char **splited_input) {
     if (!splited_input[1])
         printf("%c",'\n');
     else {
+        change_til(splited_input);
         splited_str = join_for_echo(splited_input, flags_echo);
         if (!flags_echo->act_flag || flags_echo->n_flag) {
             if (splited_str)
