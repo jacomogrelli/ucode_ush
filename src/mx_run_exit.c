@@ -69,6 +69,7 @@ void mx_run_exit(t_envp *var, char **command) {
         exit_err(command[1], 2);
         exit (-1);
     }
-    mx_printstr("exit\n");
+    if (isatty(0))
+        mx_printstr("exit\n");
     exit (i);
 }

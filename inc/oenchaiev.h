@@ -23,8 +23,6 @@ typedef struct s_wh {
     t_envp *find;
 } t_wh;
 
-//delete me
-
 //------main part------
 //заполнение структуры переменных среды
 t_envp *mx_envp_fill(char **envp);
@@ -55,5 +53,14 @@ void mx_which_finder(t_envp *var, t_wh *res, char **com);
 //------exec------
 void mx_run_exec(char **com, t_envp *var);
 void mx_exec_err_out(char *com, int err, t_envp *var);
+
+//------empty env------
+t_envp *mx_envp_i_fill(void);
+
+
+//------signal------
+// void mx_signal_run(t_envp *var);
+// void mx_sighandler();
+// void mx_sighandler(int key, t_envp *var);
 
 #endif

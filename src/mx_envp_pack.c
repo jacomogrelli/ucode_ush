@@ -45,7 +45,7 @@ void mx_envp_add(t_envp **res, char *data) {
 }
 
 t_envp *mx_envp_fill(char **envp) {
-    t_envp *res = NULL;
+    t_envp *res = mx_envp_i_fill();
 
     for (int i = 0; envp[i]; i++) {
         //заполняем принимаемые main переменные среды в свою собственную

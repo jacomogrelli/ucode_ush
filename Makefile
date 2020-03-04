@@ -41,6 +41,7 @@ SRC		=	main.c \
 			mx_pwd_run.c \
 			mx_which_run.c \
 			mx_which_helper.c \
+			mx_envp_i.c \
 
 SRCS	=	$(addprefix $(SRCD)/, $(SRC))
 OBJS	=	$(addprefix $(OBJD)/, $(SRC:%.c=%.o))
