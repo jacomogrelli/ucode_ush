@@ -40,6 +40,7 @@ SRC		=	main.c \
 			mx_cd_with_flags.c \
 			mx_set_correct_path.c \
 			mx_run_echo_command.c \
+			mx_print_e_for_echo.c \
 
 SRCS	=	$(addprefix $(SRCD)/, $(SRC))
 OBJS	=	$(addprefix $(OBJD)/, $(SRC:%.c=%.o))

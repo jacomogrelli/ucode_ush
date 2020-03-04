@@ -17,20 +17,20 @@ static void change_til(char **str) {
     }
 }
 
-static void e_flag_echo(char *splited_str) {
-    char *buf = mx_strnew(mx_strlen(splited_str));
-    int count = 0;
+// static void e_flag_echo(char *splited_str) {
+//     char *buf = mx_strnew(mx_strlen(splited_str));
+//     int count = 0;
 
-    for (int i = 0; i < mx_strlen(splited_str); i++) {
-       if(splited_str[i] == '\\') {
-            i++;
-        }
-        buf[count] = splited_str[i];
-        count++;
-    }
-    printf("%s", buf);
-    free(buf);
-}
+//     for (int i = 0; i < mx_strlen(splited_str); i++) {
+//        if(splited_str[i] == '\\') {
+//             i++;
+//         }
+//         buf[count] = splited_str[i];
+//         count++;
+//     }
+//     printf("%s", buf);
+//     free(buf);
+// }
 
 static void init_flags_echo(char **splited_input, t_flags_echo *flags_echo) {
     flags_echo->act_flag = false;
@@ -93,7 +93,8 @@ void mx_run_echo_command(t_envp *var, char **splited_input) {
             if (flags_echo->E_flag)
                 printf("%s",splited_str);
             else if (flags_echo->e_flag)
-                e_flag_echo(splited_str);
+                mx_print_e_for_echo(splited_str);
+                //e_flag_echo(splited_str);
         }
         if (!flags_echo->n_flag)
             printf("%s", "\n");
