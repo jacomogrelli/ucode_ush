@@ -46,5 +46,5 @@ void mx_run_cd_commnd(t_envp *var, char **splited_input);
 void mx_cd_without_flags(char **splited_arg, t_dirs_cd *dirs_cd);
 void mx_cd_with_flags(char **splited_arg, t_dirs_cd *dirs_cd, t_flags_cd *flags_cd, t_errors_cd *errors);
 void mx_set_correct_path();
-void mx_run_echo_command(char **splited_arg);
+void mx_run_echo_command(t_envp *var, char **splited_input);
 #endif
