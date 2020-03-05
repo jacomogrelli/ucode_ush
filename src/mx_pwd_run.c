@@ -27,6 +27,12 @@ static void pwd_flagp(void) {
     }
 }
 
+/*
+/privat/tmp/huisya/masyaya
+
+/masysya
+ */
+
 static char err_heandler(t_envp *var, char **com, bool *status) {
     char res = 'L';
 

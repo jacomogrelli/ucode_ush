@@ -1,5 +1,33 @@
 #include "ush.h"
 
+static void envp_data_switch(t_envp *i, t_envp *j) {
+    t_envp *buf = malloc(sizeof(t_envp));
+
+    buf->name = strdup(i->name);
+    mx_strdel(&i->name);
+    buf->val = strdup(i->val);
+    mx_strdel(&i->name);
+    i->name = strdup(j->name);
+    mx_strdel(&j->name);
+    i->val = strdup(j->val);
+    mx_strdel(&j->name);
+    j->name = strdup(buf->name);
+    mx_strdel(&buf->name);
+    j->val = strdup(buf->val);
+    mx_strdel(&buf->name);
+    free(buf);
+}
+
+t_envp *mx_envp_sort(t_envp *var) {
+    if (!var)
+        return NULL;
+    for (t_envp *i = var; i->next; i = i->next)
+        for (t_envp *j = i->next; j; j = j->next)
+            if (strcmp(i->name, j->name) > 0)
+                envp_data_switch(i, j);
+    return var;
+}
+
 void mx_envp_replace(t_envp **res, char *data) {
     t_envp *head = *res;
     //копируем имя переменной
@@ -21,7 +49,6 @@ void mx_envp_replace(t_envp **res, char *data) {
     }
     //если не нашли, удаляем буфер от ликов и заталкиваем в начало.
     mx_strdel(&buf_name);
-
     mx_envp_add (res, data);
 }
 

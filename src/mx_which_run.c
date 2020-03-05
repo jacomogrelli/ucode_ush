@@ -92,5 +92,4 @@ void mx_which_run(t_envp *var, char **com) {
     }
     mx_which_finder(var, res, com);
     mx_which_cleaner(var, res, 0);
-
 }

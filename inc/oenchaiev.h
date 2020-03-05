@@ -24,12 +24,6 @@ typedef struct s_wh {
 } t_wh;
 
 //------main part------
-//заполнение структуры переменных среды
-t_envp *mx_envp_fill(char **envp);
-//выделение памяти и зануление следующего елемента s_envp
-void mx_envp_add(t_envp **res, char *data);
-//замена текущего элемента s_envp
-void mx_envp_replace(t_envp **res, char *data);
 void mx_ush_init(t_envp *var);
 void mx_get_command(t_envp *var, char **com);
 void mx_run_cd(char *args);
@@ -54,8 +48,21 @@ void mx_which_finder(t_envp *var, t_wh *res, char **com);
 void mx_run_exec(char **com, t_envp *var);
 void mx_exec_err_out(char *com, int err, t_envp *var);
 
-//------empty env------
-t_envp *mx_envp_i_fill(void);
+//------env------
+t_envp *mx_envp_i_fill(void); //filling if empty env
+//заполнение структуры переменных среды
+t_envp *mx_envp_fill(char **envp);
+//выделение памяти и зануление следующего елемента s_envp
+void mx_envp_add(t_envp **res, char *data);
+//замена текущего элемента s_envp
+void mx_envp_replace(t_envp **res, char *data);
+void mx_print_var(t_envp *var, char *com);
+t_envp *mx_envp_sort(t_envp *var);
+
+
+//------set/unset------
+void mx_unset_run(t_envp *var, char **com);
+void mx_set_run(t_envp *var, char **com);
 
 
 //------signal------

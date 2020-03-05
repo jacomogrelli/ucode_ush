@@ -71,5 +71,6 @@ void mx_run_exit(t_envp *var, char **command) {
     }
     if (isatty(0))
         mx_printstr("exit\n");
+    system("leaks -q ush");
     exit (i);
 }
