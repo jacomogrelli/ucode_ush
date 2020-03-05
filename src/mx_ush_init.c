@@ -4,7 +4,6 @@
 // формата {"command", "-flags", "argv[1]", ... "argv[n]", NULL}
 // например
 // char *buf_com[] = {"ls", "-la", "libmx", NULL}
-
 void mx_ush_init(t_envp *var) {
     size_t bufsize = 1;
     char *input_line = malloc(sizeof (char) * (int)bufsize);

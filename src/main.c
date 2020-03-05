@@ -8,7 +8,6 @@ int main(int argc, char **argv, char **envp) {
     //     printf("%s\n", head->val);
     // }
     // exit(0);
-
     if (argc && argv)
     mx_ush_init(var);
     return 0;

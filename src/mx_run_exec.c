@@ -53,6 +53,7 @@ void mx_run_exec(char **com, t_envp *var) {
     int status;
 
     pid = fork();
+
     if (pid == 0) {
         if ((execvp(com[0], com)) < 0) {
             exit (errno);
@@ -60,6 +61,7 @@ void mx_run_exec(char **com, t_envp *var) {
         exit (EXIT_SUCCESS);
     }
     wpid = waitpid(pid, &status, WUNTRACED);
+
     switch WEXITSTATUS(status) {
         case 0:
             mx_envp_replace(&var, "?=0");
