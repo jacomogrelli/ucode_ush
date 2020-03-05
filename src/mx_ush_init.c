@@ -18,7 +18,8 @@ void mx_ush_init(t_envp *var) {
             mx_get_command(var, com);
             mx_del_strarr(&com);
             }
-        mx_strdel(&input_line);
+        // free(input_line);
+        // mx_strdel(&input_line);
         // system("leaks -q ush");
     }
 }

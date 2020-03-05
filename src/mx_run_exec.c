@@ -47,19 +47,7 @@ void mx_exec_err_out(char *com, int err, t_envp *var) {
     free(buf);
 }
 
-void mx_run_exec(char **com, t_envp *var) {
-    pid_t pid;
-    pid_t wpid;
-    int status;
-
-    pid = fork();
-    if (pid == 0) {
-        if ((execvp(com[0], com)) < 0) {
-            exit (errno);
-        }
-        exit (EXIT_SUCCESS);
-    }
-    wpid = waitpid(pid, &status, WUNTRACED);
+static void sasha_grey(t_envp *var, int status, char *com) {
     switch WEXITSTATUS(status) {
         case 0:
             mx_envp_replace(&var, "?=0");
@@ -68,7 +56,28 @@ void mx_run_exec(char **com, t_envp *var) {
             mx_envp_replace(&var, "?=1");
             break;
         default:
-            mx_exec_err_out(com[0], WEXITSTATUS(status), var);
+            mx_exec_err_out(com, WEXITSTATUS(status), var);
             break;
     }
+}
+
+void mx_run_exec(char **com, t_envp *var) {
+    pid_t pid;
+    pid_t wpid;
+    int status;
+
+    pid = fork();
+    if (pid == 0) {
+        if (getenv("PATH")) {
+            if ((execvp(com[0], com)) < 0)
+                exit(errno);
+        }
+        else {
+            if ((execv(com[0], com)) < 0)
+                exit(errno);
+        }
+        exit(EXIT_SUCCESS);
+    }
+    wpid = waitpid(pid, &status, WUNTRACED);
+    sasha_grey(var, status, com[0]);
 }

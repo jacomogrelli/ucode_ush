@@ -49,7 +49,7 @@ void mx_envp_replace(t_envp **res, char *data) {
     }
     //если не нашли, удаляем буфер от ликов и заталкиваем в начало.
     mx_strdel(&buf_name);
-    mx_envp_add (res, data);
+    mx_envp_add(res, data);
 }
 
 void mx_envp_add(t_envp **res, char *data) {

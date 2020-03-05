@@ -58,12 +58,18 @@ void mx_envp_add(t_envp **res, char *data);
 void mx_envp_replace(t_envp **res, char *data);
 void mx_print_var(t_envp *var, char *com);
 t_envp *mx_envp_sort(t_envp *var);
-
+void mx_envp_shlvl(t_envp *var);
+void mx_export_run(t_envp *var, char **com);
 
 //------set/unset------
 void mx_unset_run(t_envp *var, char **com);
 void mx_set_run(t_envp *var, char **com);
 
+//------export------
+void mx_export_run(t_envp *var, char **com);
+void mx_export_new_var(t_envp *var, char *com);
+void mx_export_argfree(t_envp *var);
+void mx_export_from_envp(t_envp *var, char *com);
 
 //------signal------
 // void mx_signal_run(t_envp *var);

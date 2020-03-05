@@ -43,6 +43,8 @@ SRC		=	main.c \
 			mx_which_helper.c \
 			mx_envp_i.c \
 			mx_unset_run.c \
+			mx_envp_manage.c \
+			mx_export_run.c \
 
 SRCS	=	$(addprefix $(SRCD)/, $(SRC))
 OBJS	=	$(addprefix $(OBJD)/, $(SRC:%.c=%.o))

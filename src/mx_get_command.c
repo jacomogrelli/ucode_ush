@@ -2,8 +2,9 @@
 
 
 void mx_get_command(t_envp *var, char **com) {
-    char *bin[] = {"set", "unset", "pwd", "exit", "cd", "which", NULL};
-    void (*builtin_func[])() = {&mx_set_run,
+    char *bin[] = {"export", "set", "unset", "pwd", "exit", "cd", "which", NULL};
+    void (*builtin_func[])() = {&mx_export_run,
+                                &mx_set_run,
                                 &mx_unset_run,
                                 &mx_pwd_run,
                                 &mx_run_exit,

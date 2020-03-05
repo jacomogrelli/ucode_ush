@@ -63,6 +63,8 @@ t_envp *mx_envp_i_fill(void) {
         res = envp_gethomelvl(1, res);
     if (!(getenv("SHLVL")))
         res = envp_gethomelvl(2, res);
+    else
+        mx_envp_shlvl(res);
     if (!(getenv("_")))
         res = envp_gethomelvl(3, res);
     if (!(getenv("PATH")))
