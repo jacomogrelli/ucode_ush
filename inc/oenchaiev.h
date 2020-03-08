@@ -6,7 +6,20 @@
 #define MX_ISDIR(m)      (((m) & S_IFMT) == S_IFDIR)  /* 'd'irectory */
 #define MX_ISLNK(m)      (((m) & S_IFMT) == S_IFLNK)  /* 'l'symbolic link */
 
+typedef struct s_comm {
+    char **com;
+    char logic;
+    int status;
+    struct s_comm *next;
+}              t_comm;
 
+typedef struct s_ush_init {
+    size_t bufsize;
+    char *iline;
+    char **com;
+    int i;
+    t_comm *argv;
+}              t_ush_init;
 
 /* структура для переменных среды, которую принимаем перед
 инициализацией ush, передаем в нее и меняем, если это делает оригиная
@@ -36,6 +49,11 @@ typedef struct s_nv {
     t_list *path;
     char **com;
 }              t_nv;
+
+//------parser------
+void mx_parser(char *line, t_comm **res);
+void mx_parser_line(char *line, t_comm **res);
+void mx_parser_splitter(char *line, t_comm **res, char c);
 
 //------main part------
 void mx_ush_init(t_envp *var);
