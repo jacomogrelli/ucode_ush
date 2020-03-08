@@ -8,7 +8,9 @@ int main(int argc, char **argv, char **envp) {
     //     printf("%s\n", head->val);
     // }
     // exit(0);
-
+    signal(SIGINT, SIG_IGN);
+    signal(SIGTTIN, SIG_IGN);
+    signal(SIGTSTP, SIG_IGN);
     if (argc && argv)
     mx_ush_init(var);
     return 0;

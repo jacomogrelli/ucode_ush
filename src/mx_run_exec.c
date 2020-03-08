@@ -47,6 +47,10 @@ void mx_exec_err_out(char *com, int err, t_envp *var) {
     free(buf);
 }
 
+static void sign() {
+    mx_printstr("TEST");
+}
+
 void mx_run_exec(char **com, t_envp *var) {
     pid_t pid;
     pid_t wpid;
@@ -54,12 +58,16 @@ void mx_run_exec(char **com, t_envp *var) {
 
     pid = fork();
     if (pid == 0) {
+        signal(SIGINT, sign);
+        signal(SIGTSTP, SIG_DFL);
         if ((execvp(com[0], com)) < 0) {
             exit (errno);
         }
         exit (EXIT_SUCCESS);
     }
     wpid = waitpid(pid, &status, WUNTRACED);
+    tcsetpgrp(0, getpid());
+
     switch WEXITSTATUS(status) {
         case 0:
             mx_envp_replace(&var, "?=0");

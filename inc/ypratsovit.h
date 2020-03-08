@@ -27,6 +27,14 @@ typedef struct s_flags_echo {
     bool act_flag;
 } t_flags_echo;
 
+typedef struct s_history {
+    int nuber_line;
+    int count;
+    char **value;
+    int spaces_first;
+    int spaces_second;
+} t_history;
+
 char **mx_errors_cd (char **inp_line, t_errors_cd *errors, t_flags_cd *flags_cd);
 char **mx_mystrsplit(const char *s, char c);
 void mx_e_too_many_arg_cd (char **splited_arg, t_errors_cd *errors, t_flags_cd *flags_cd);
@@ -48,5 +56,10 @@ void mx_cd_with_flags(char **splited_arg, t_dirs_cd *dirs_cd, t_flags_cd *flags_
 void mx_set_correct_path();
 void mx_run_echo_command(t_envp *var, char **splited_input);
 void mx_print_e_for_echo(char *str);
+t_history *mx_init_story();
+void mx_save_story(char *input_line, t_history *history);
+void mx_free_story(t_history *history);
+void mx_print_strory(t_history *history);
+int mx_count_numbers(int number);
 
 #endif
