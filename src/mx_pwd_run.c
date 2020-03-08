@@ -27,12 +27,6 @@ static void pwd_flagp(void) {
     }
 }
 
-/*
-/privat/tmp/huisya/masyaya
-
-/masysya
- */
-
 static char err_heandler(t_envp *var, char **com, bool *status) {
     char res = 'L';
 
@@ -69,4 +63,5 @@ void mx_pwd_run(t_envp *var, char **com) {
     if (flag == 'P')
         pwd_flagp();
     mx_envp_replace(&var, "?=0");
+    return;
 }
