@@ -33,7 +33,6 @@ void mx_ush_init(t_envp *var) {
                 for (t_comm *head = res->argv; head; head = head->next) {
                     // mx_print_strarr(head->argv->com, " ");
                     mx_get_command(var, head->com);
-                    printf("%s", "TEST");
                 }
                 mx_parser_cleaner(&(res->argv));
                 res->i = 0;
