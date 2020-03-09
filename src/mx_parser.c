@@ -8,7 +8,7 @@ void mx_parser_cleaner(t_comm **res) {
             mx_del_strarr(&head->com);
         head = head->next;
     }
-    // free(res);
+    free((*res));
 }
 
 void mx_parser_splitter(char *line, t_comm **res, char c) {

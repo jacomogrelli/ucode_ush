@@ -53,6 +53,7 @@ SRC		=	main.c \
 			mx_env_run.c \
 			mx_env_func.c \
 			mx_parser.c \
+			mx_ush_rescleaner.c \
 
 SRCS	=	$(addprefix $(SRCD)/, $(SRC))
 OBJS	=	$(addprefix $(OBJD)/, $(SRC:%.c=%.o))
