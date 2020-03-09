@@ -35,10 +35,11 @@ void mx_save_story(char *input_line, t_history *history) {
 void mx_print_strory(t_history *history) {
     int longest_numbers = mx_count_numbers(history->nuber_line);
     int spaces = 0;
+    history->nuber_line = 1;
 
     for (int i = 0; i < history->count; i++) {
-        spaces = longest_numbers - mx_count_numbers(i + 1);
-        for (int j = 0; j < history->spaces_first + spaces; j++){
+        spaces = longest_numbers - mx_count_numbers(i);
+        for (int j = 0; j < history->spaces_first + spaces + 1; j++){
             printf("%c", ' ');
         }
         printf("%d", history->nuber_line);
@@ -48,5 +49,6 @@ void mx_print_strory(t_history *history) {
         printf("%s", history->value[i]);
         history->nuber_line++;
     }
-    //mx_free_story(history);
+    // mx_free_story(history);
+    // mx_init_story();
 }
