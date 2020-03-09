@@ -24,10 +24,12 @@ void mx_ush_init(t_envp *var) {
         res->com = mx_strsplit(mx_del_extra_spaces(res->iline), ';');
         for (;res->com[res->i]; res->i++) {
             mx_parser(res->com[res->i], &(res->argv));
-            for (;res->argv; res->argv = res->argv->next) {
-                mx_print_strarr(res->argv->com, " ");
-                mx_get_command(var, res->argv->com);
+            for (t_comm *head = res->argv; head; head = head->next) {
+                // mx_print_strarr(head->argv->com, " ");
+                mx_get_command(var, head->com);
             }
+            mx_parser_cleaner(&(res->argv));
+            res->i = 0;
         }
     }
 }

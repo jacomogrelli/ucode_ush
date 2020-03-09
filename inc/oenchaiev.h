@@ -54,6 +54,7 @@ typedef struct s_nv {
 void mx_parser(char *line, t_comm **res);
 void mx_parser_line(char *line, t_comm **res);
 void mx_parser_splitter(char *line, t_comm **res, char c);
+void mx_parser_cleaner(t_comm **res);
 
 //------main part------
 void mx_ush_init(t_envp *var);
