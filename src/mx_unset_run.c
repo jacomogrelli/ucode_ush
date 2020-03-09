@@ -1,19 +1,23 @@
 #include "ush.h"
 
-static void unset_envp_del(t_envp **var, char *com) {
-    t_envp *head = *var;
+static t_envp *unset_envp_del(t_envp *var, char *com) {
+    t_envp *head = var;
+    t_envp *head2 = var;
+    int count = 0;
 
-    while(head) {
+    for (;head; head = head->next, count++) {
         if (!strcmp(head->name, com)) {
+            for (int i = 0; i < count - 1; i++)
+                head2 = head2->next;
             t_envp *buf = head->next;
             mx_strdel(&head->name);
             mx_strdel(&head->val);
             free(head);
-            head = buf;
+            head2->next = buf;
             break;
         }
-        head = head->next;
     }
+    return var;
 }
 
 void mx_set_run(t_envp *var, char **com) {
@@ -21,7 +25,7 @@ void mx_set_run(t_envp *var, char **com) {
 
     if (!var || !com[0])
         return;
-    head = mx_envp_sort(head);
+    // head = mx_envp_sort(head);
     while (head) {
         printf("%s=", head->name);
         printf("%s\n", head->val);
@@ -45,16 +49,10 @@ void mx_print_var(t_envp *var, char *com) {
 }
 
 void mx_unset_run(t_envp *var, char **com) {
-    if (!com[1]) {
-        mx_envp_replace(&var, "?=0");
-        return;
-    }
     for (int i = 1; com[i]; i++) {
-        if (!(unsetenv(com[1])))
-            continue;
-        unset_envp_del(&var, com[i]);
+        unsetenv(com[i]);
+        var = unset_envp_del(var, com[i]);
     }
     mx_envp_replace(&var, "?=0");
-    mx_set_run(var, com);
     return;
 }

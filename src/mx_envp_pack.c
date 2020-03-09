@@ -49,12 +49,15 @@ void mx_envp_replace(t_envp **res, char *data) {
     }
     //если не нашли, удаляем буфер от ликов и заталкиваем в начало.
     mx_strdel(&buf_name);
-    mx_envp_add (res, data);
+    mx_envp_add(res, data);
 }
 
 void mx_envp_add(t_envp **res, char *data) {
     t_envp *buf = NULL;
+    t_envp *head = *res;
 
+    if (!data)
+        return;
     //создаем ноду
     buf = malloc(sizeof(t_envp));
     buf->name = strndup(data, mx_get_char_index(data, '='));
@@ -66,9 +69,13 @@ void mx_envp_add(t_envp **res, char *data) {
         *res = buf;
         return;
     }
+    while (head->next) {
+        head = head->next;
+    }
+    head->next = buf;
     //заталкиваем в начало
-    buf->next = *res;
-    *res = buf;
+    // buf->next = *res;
+    // *res = buf;
 }
 
 t_envp *mx_envp_fill(char **envp) {

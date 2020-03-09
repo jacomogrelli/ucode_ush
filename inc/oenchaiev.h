@@ -3,7 +3,23 @@
 
 #include "libmx.h"
 
+#define MX_ISDIR(m)      (((m) & S_IFMT) == S_IFDIR)  /* 'd'irectory */
 #define MX_ISLNK(m)      (((m) & S_IFMT) == S_IFLNK)  /* 'l'symbolic link */
+
+typedef struct s_comm {
+    char **com;
+    char logic;
+    int status;
+    struct s_comm *next;
+}              t_comm;
+
+typedef struct s_ush_init {
+    size_t bufsize;
+    char *iline;
+    char **com;
+    int i;
+    t_comm *argv;
+}              t_ush_init;
 
 /* структура для переменных среды, которую принимаем перед
 инициализацией ush, передаем в нее и меняем, если это делает оригиная
@@ -12,7 +28,7 @@ typedef struct s_envp {
     char *name;
     char *val;
     struct s_envp *next;
-} t_envp;
+}              t_envp;
 
 //структура для which
 typedef struct s_wh {
@@ -21,7 +37,24 @@ typedef struct s_wh {
     int pos;
     bool key_s;
     t_envp *find;
-} t_wh;
+}              t_wh;
+
+//структура для env
+typedef struct s_nv {
+    int i;
+    int u;
+    int p;
+    t_list *exp;
+    t_list *unset;
+    t_list *path;
+    char **com;
+}              t_nv;
+
+//------parser------
+void mx_parser(char *line, t_comm **res);
+void mx_parser_line(char *line, t_comm **res);
+void mx_parser_splitter(char *line, t_comm **res, char c);
+void mx_parser_cleaner(t_comm **res);
 
 //------main part------
 void mx_ush_init(t_envp *var);
@@ -48,7 +81,7 @@ void mx_which_finder(t_envp *var, t_wh *res, char **com);
 void mx_run_exec(char **com, t_envp *var);
 void mx_exec_err_out(char *com, int err, t_envp *var);
 
-//------env------
+//------envp------
 t_envp *mx_envp_i_fill(void); //filling if empty env
 //заполнение структуры переменных среды
 t_envp *mx_envp_fill(char **envp);
@@ -58,12 +91,23 @@ void mx_envp_add(t_envp **res, char *data);
 void mx_envp_replace(t_envp **res, char *data);
 void mx_print_var(t_envp *var, char *com);
 t_envp *mx_envp_sort(t_envp *var);
-
+void mx_envp_shlvl(t_envp *var);
+void mx_export_run(t_envp *var, char **com);
 
 //------set/unset------
 void mx_unset_run(t_envp *var, char **com);
 void mx_set_run(t_envp *var, char **com);
 
+//------export------
+void mx_export_run(t_envp *var, char **com);
+void mx_export_new_var(t_envp *var, char *com);
+void mx_export_argfree(t_envp *var);
+void mx_export_from_envp(t_envp *var, char *com);
+
+//------env------
+void mx_env_run(t_envp *var, char **com);
+void mx_env_func(t_envp *var, char **com);
+void mx_env_getp(t_nv *res, char **com);
 
 //------signal------
 // void mx_signal_run(t_envp *var);

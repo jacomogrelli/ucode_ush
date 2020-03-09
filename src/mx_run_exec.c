@@ -51,6 +51,20 @@ static void sign() {
     mx_printstr("TEST");
 }
 
+static void sasha_grey(t_envp *var, int status, char *com) {
+    switch WEXITSTATUS(status) {
+        case 0:
+            mx_envp_replace(&var, "?=0");
+            break;
+        case 1:
+            mx_envp_replace(&var, "?=1");
+            break;
+        default:
+            mx_exec_err_out(com, WEXITSTATUS(status), var);
+            break;
+    }
+}
+
 void mx_run_exec(char **com, t_envp *var) {
     pid_t pid;
     pid_t wpid;
@@ -67,16 +81,5 @@ void mx_run_exec(char **com, t_envp *var) {
     }
     wpid = waitpid(pid, &status, WUNTRACED);
     tcsetpgrp(0, getpid());
-
-    switch WEXITSTATUS(status) {
-        case 0:
-            mx_envp_replace(&var, "?=0");
-            break;
-        case 1:
-            mx_envp_replace(&var, "?=1");
-            break;
-        default:
-            mx_exec_err_out(com[0], WEXITSTATUS(status), var);
-            break;
-    }
+    sasha_grey(var, status, com[0]);
 }
