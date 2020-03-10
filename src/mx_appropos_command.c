@@ -16,7 +16,8 @@ void mx_apropos_command(t_envp *var, char **com) {
     int count = 0;
     bool find = false;
     char *commands[] = {"env", "export", "set", "unset", "pwd", "exit", "cd",
-                   "which", "echo", "true", "false", "return", "chdir", NULL};
+                   "which", "echo", "true", "false", "help", "return",
+                   "chdir", "apropos", "arch", NULL};
     if (com[0] && !com[1]) {
         mx_printerr("usage: apropos keyword ...\n");
         count++;
