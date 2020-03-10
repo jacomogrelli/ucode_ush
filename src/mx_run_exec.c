@@ -47,10 +47,6 @@ void mx_exec_err_out(char *com, int err, t_envp *var) {
     free(buf);
 }
 
-static void sign() {
-    mx_printstr("TEST");
-}
-
 static void sasha_grey(t_envp *var, int status, char *com) {
     switch WEXITSTATUS(status) {
         case 0:
@@ -72,7 +68,7 @@ void mx_run_exec(char **com, t_envp *var) {
 
     pid = fork();
     if (pid == 0) {
-        signal(SIGINT, sign);
+        signal(SIGINT, SIG_DFL);
         signal(SIGTSTP, SIG_DFL);
         if ((execvp(com[0], com)) < 0) {
             exit (errno);

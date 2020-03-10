@@ -45,6 +45,7 @@ void mx_run_cd_commnd(t_envp *var, char **splited_input) {
             else {
                 mx_cd_with_flags(splited_arg, dirs_cd, flags_cd, errors);
             }
+            mx_envp_replace(&var, "?=0");
         }
         else
             mx_envp_replace(&var, "?=1");

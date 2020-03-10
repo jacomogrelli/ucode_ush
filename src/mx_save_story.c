@@ -32,7 +32,7 @@ void mx_save_story(char *input_line, t_history *history) {
     history->count++;
 }
 
-void mx_print_strory(t_history *history) {
+void mx_print_strory(t_envp *var, t_history *history) {
     int longest_numbers = mx_count_numbers(history->nuber_line);
     int spaces = 0;
     history->nuber_line = 1;
@@ -49,6 +49,7 @@ void mx_print_strory(t_history *history) {
         printf("%s", history->value[i]);
         history->nuber_line++;
     }
+    mx_envp_replace(&var, "?=0");
     // mx_free_story(history);
     // mx_init_story();
 }

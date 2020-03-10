@@ -101,5 +101,5 @@ void mx_run_echo_command(t_envp *var, char **splited_input) {
     }
     free(flags_echo);
     free(splited_str);
-    mx_envp_replace(&var, "?=1");
+    mx_envp_replace(&var, "?=0");
 }

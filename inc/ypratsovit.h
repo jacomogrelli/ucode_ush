@@ -59,9 +59,9 @@ void mx_print_e_for_echo(char *str);
 t_history *mx_init_story();
 void mx_save_story(char *input_line, t_history *history);
 void mx_free_story(t_history *history);
-void mx_print_strory(t_history *history);
+void mx_print_strory(t_envp *var, t_history *history);
 int mx_count_numbers(int number);
 void mx_handler();
 void mx_if_eof(t_envp *var, char **ex);
-bool mx_cal_history(t_ush_init *res, t_history *history);
+bool mx_cal_history(t_envp *var, t_ush_init *res, t_history *history);
 #endif

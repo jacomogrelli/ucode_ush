@@ -1,5 +1,9 @@
 #include "ush.h"
 
+static void test() {
+    mx_printstr("TEST!!!!");
+}
+
 void mx_ush_init(t_envp *var) {
     t_ush_init *res = mx_ush_struct_init();
     t_history *history = mx_init_story();
@@ -9,12 +13,13 @@ void mx_ush_init(t_envp *var) {
         mx_print_var(var, "?");
         if (isatty(0)) //проверка наличия перенаправления потока вывода
             printf("u$h> ");
+        signal(SIGUSR1, test);
         signal(SIGINT, mx_handler);
         if (getline(&(res->iline), &(res->bufsize), stdin) < 0) {
             //чекаем будет ли ввод, для "echo "ls -la" | ./ush
             mx_if_eof(var, ex);
         }
-        if (!mx_cal_history(res, history)) {
+        if (!mx_cal_history(var, res, history)) {
             res->com = mx_strsplit(mx_del_extra_spaces(res->iline), ';');
             for (;res->com[res->i]; res->i++) {
                 mx_parser(res->com[res->i], &(res->argv));
@@ -25,7 +30,6 @@ void mx_ush_init(t_envp *var) {
                 mx_parser_cleaner(&(res->argv));
             }
             mx_ush_rescleaner(&res);
-
         }
     }
 }
