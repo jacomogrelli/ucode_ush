@@ -70,5 +70,6 @@ void mx_call_false(t_envp *var);
 void mx_help_command(t_envp *var, char **com);
 void mx_return_command(t_envp *var, char **com);
 void mx_chdir_command(t_envp *var, char** com);
+void mx_apropos_command(t_envp *var, char **com);
 
 #endif
