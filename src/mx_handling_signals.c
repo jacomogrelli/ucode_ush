@@ -2,7 +2,14 @@
 
 void mx_handler() {
     mx_printstr("\n");
-    mx_printstr("u$h> ");
+    char *get_prompt = getenv("PROMPT");
+
+    if (!get_prompt)
+        mx_printstr("u$h> ");
+    else {
+        mx_printstr(get_prompt);
+        mx_printstr("> ");
+    }
     return;
 }
 

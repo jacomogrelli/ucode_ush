@@ -1,18 +1,13 @@
 #include "ush.h"
 
-static void test() {
-    mx_printstr("TEST!!!!");
-}
-
 void mx_ush_init(t_envp *var) {
     t_ush_init *res = mx_ush_struct_init();
     t_history *history = mx_init_story();
     char *ex[] = {"exit", NULL};
-
     while (1) {
         mx_print_var(var, "?");
         if (isatty(0)) //проверка наличия перенаправления потока вывода
-            printf("%s", getenv("PRT"));
+            mx_uniq_prompt();
         signal(SIGINT, mx_handler);
         if (getline(&(res->iline), &(res->bufsize), stdin) < 0) {
             //чекаем будет ли ввод, для "echo "ls -la" | ./ush

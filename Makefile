@@ -56,6 +56,11 @@ SRC		=	main.c \
 			mx_ush_rescleaner.c \
 			mx_handling_signals.c \
 			mx_parcer_iline.c \
+			mx_uniq_prompt.c \
+			mx_true_false.c \
+			mx_help_command.c \
+			mx_return_command.c \
+			mx_chdir_command.c \
 
 SRCS	=	$(addprefix $(SRCD)/, $(SRC))
 OBJS	=	$(addprefix $(OBJD)/, $(SRC:%.c=%.o))

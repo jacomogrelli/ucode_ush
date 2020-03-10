@@ -64,4 +64,11 @@ int mx_count_numbers(int number);
 void mx_handler();
 void mx_if_eof(t_envp *var, char **ex);
 bool mx_cal_history(t_envp *var, t_ush_init *res, t_history *history);
+void mx_uniq_prompt();
+void mx_call_true(t_envp *var);
+void mx_call_false(t_envp *var);
+void mx_help_command(t_envp *var, char **com);
+void mx_return_command(t_envp *var, char **com);
+void mx_chdir_command(t_envp *var, char** com);
+
 #endif
