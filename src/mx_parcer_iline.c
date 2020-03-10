@@ -5,7 +5,7 @@ char **mx_parser_paris(t_envp *var, char *line) {
 
     if (!mx_parser_pais(var, line))
         return NULL;
-    // if (!)
+    line = mx_parser_tilda(line);
     return res;
 }
 

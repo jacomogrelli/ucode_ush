@@ -62,7 +62,7 @@ void mx_ush_rescleaner(t_ush_init **res);
 t_ush_init *mx_ush_struct_init();
 char **mx_parser_paris(t_envp *var, char *line);
 int mx_parser_pais(t_envp *var, char *line);
-int mx_parser_tilda(t_envp *var, char **line);
+char *mx_parser_tilda(char *line);
 void mx_parser_err(t_envp *var, char c, int flag);
 
 
