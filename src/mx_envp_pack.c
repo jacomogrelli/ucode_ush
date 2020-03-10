@@ -85,6 +85,8 @@ t_envp *mx_envp_fill(char **envp) {
         //заполняем принимаемые main переменные среды в свою собственную
         mx_envp_add(&res, envp[i]);
     }
+    mx_envp_add(&res, "PRT=u$h> ");
+    setenv("PRT", "u$h> ", 1);
     mx_envp_add(&res, "?=0");
     return res;
 }

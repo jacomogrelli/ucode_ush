@@ -11,7 +11,7 @@ void mx_parser_cleaner(t_comm **res) {
     free((*res));
 }
 
-void mx_parser_splitter(char *line, t_comm **res, char c) {
+void mx_parser(char *line, t_comm **res, char c, t_envp *var) {
     t_comm *ptr = *res;
 
     if (ptr) {
@@ -28,28 +28,23 @@ void mx_parser_splitter(char *line, t_comm **res, char c) {
         (*res)->logic = c;
         (*res)->next = NULL;
     }
+    if (var)
     free(line);
 }
 
-void mx_parser_line(char *line, t_comm **res) {
+void mx_parser_line(char *line, t_comm **res, t_envp *var) {
     int count = 0;
 
     for (int i = 0; line[i]; i++, count++) {
         if ((line[i] == '&' && line[i + 1] == '&')
             || (line[i] == '|' && line[i + 1] == '|')) {
-            mx_parser_splitter(strndup(line + i - count, count),
-                                      res, line[i]);
+            mx_parser(strndup(line + i - count, count), res, line[i], var);
             count = 0;
             i += 2;
         }
         if (line[i + 1] == '\0') {
-            mx_parser_splitter(strndup(line + i - count, count + 1),
-                                      res, line[i]);
+            mx_parser(strndup(line + i - count, count + 1), res, line[i], var);
             break;
         }
     }
-}
-
-void mx_parser(char *line, t_comm **res) {
-    mx_parser_line(line, res);
 }
