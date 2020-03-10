@@ -3,6 +3,10 @@
 
 #include "libmx.h"
 
+#define MX_PARS_PAIR "\"'{}"
+#define MX_PARS_ERR "`()"
+#define MX_PARS_TSTOP " \n\t\r\v\f/"
+
 #define MX_ISDIR(m)      (((m) & S_IFMT) == S_IFDIR)  /* 'd'irectory */
 #define MX_ISLNK(m)      (((m) & S_IFMT) == S_IFLNK)  /* 'l'symbolic link */
 
@@ -51,12 +55,15 @@ typedef struct s_nv {
 }              t_nv;
 
 //------parser------
-void mx_parser(char *line, t_comm **res);
-void mx_parser_line(char *line, t_comm **res);
-void mx_parser_splitter(char *line, t_comm **res, char c);
+void mx_parser(char *line, t_comm **res, char c, t_envp *var);
+void mx_parser_line(char *line, t_comm **res, t_envp *var);
 void mx_parser_cleaner(t_comm **res);
 void mx_ush_rescleaner(t_ush_init **res);
 t_ush_init *mx_ush_struct_init();
+char **mx_parser_paris(t_envp *var, char *line);
+int mx_parser_pais(t_envp *var, char *line);
+int mx_parser_tilda(t_envp *var, char **line);
+void mx_parser_err(t_envp *var, char c, int flag);
 
 
 
