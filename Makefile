@@ -64,6 +64,8 @@ SRC		=	main.c \
 			mx_appropos_command.c \
 			mx_arch_command.c \
 			mx_parser_tilda.c \
+			mx_parser_var.c \
+			mx_parser_array.c \
 
 SRCS	=	$(addprefix $(SRCD)/, $(SRC))
 OBJS	=	$(addprefix $(OBJD)/, $(SRC:%.c=%.o))

@@ -54,18 +54,42 @@ typedef struct s_nv {
     char **com;
 }              t_nv;
 
+// < exit
+// <
+
+// < cd ..; pwd; exit
+// <
+
+// < export UNIT=location; export UFK=p2p ucode=cbl; echo "\$var1 = $UNIT, \$var2 = $UFK, \$var3 = $ucode"; exit
+// <
+// < $var1 =  $var2 =  $var3 =
+// ---
+// > $var1 = location, $var2 = p2p, $var3 = cbl
+
+// < export UNIT=location UFK=p2p ucode=cbl ; echo "\$var1 = $UNIT, \$var2 = $UFK, \$var3 = $ucode" ; unset UNIT UFK ucode ; echo "\$var1 = $UNIT, \$var2 = $UFK, \$var3 = $ucode" ; exit
+// <
+// < $var1 =  $var2 =  $var3 =
+// < $var1 =  $var2 =  $var3 =
+// ---
+// > $var1 = location, $var2 = p2p, $var3 = cbl
+// > $var1 = , $var2 = , $var3 =
+
+
 //------parser------
-void mx_parser(char *line, t_comm **res, char c, t_envp *var);
-void mx_parser_line(char *line, t_comm **res, t_envp *var);
+void mx_parser(char *line, t_comm **res, char c);
+void mx_parser_line(char *line, t_comm **res);
 void mx_parser_cleaner(t_comm **res);
 void mx_ush_rescleaner(t_ush_init **res);
 t_ush_init *mx_ush_struct_init();
-char **mx_parser_paris(t_envp *var, char *line);
 int mx_parser_pais(t_envp *var, char *line);
 char *mx_parser_tilda(char *line);
 void mx_parser_err(t_envp *var, char c, int flag);
-
-
+char *mx_parser_var(char *line);
+char **mx_parser_paris(char *line);
+void mx_parser_array(char *line, char ***res);
+void mx_parser_array_delsh(char **line);
+void mx_parser_array_br(char *line, int *il, int *iar, char **res);
+void mx_parser_array_getfirst(char *line, int *il, int *iar, char **res);
 
 //------main part------
 void mx_ush_init(t_envp *var);

@@ -1,11 +1,13 @@
 #include "ush.h"
 
-char **mx_parser_paris(t_envp *var, char *line) {
-    char **res = NULL;
-
-    if (!mx_parser_pais(var, line))
-        return NULL;
+char **mx_parser_paris(char *line) {
+    char **res = malloc(sizeof(char *));
+    // if (!mx_parser_pais(var, line))
+    //     return NULL;
     line = mx_parser_tilda(line);
+    line = mx_parser_var(line);
+    line = mx_strtrim(line);
+    mx_parser_array(line, &res);
     return res;
 }
 
@@ -20,14 +22,14 @@ int mx_parser_pais(t_envp *var, char *line) {
         if (mx_get_char_index(MX_PARS_ERR, line[b]) >= 0
             && line[b - 1] != '\\') {
             mx_parser_err(var, line[b], 1);
-            return 1;
+            return 0;
         }
         if (mx_get_char_index(MX_PARS_PAIR, line[b]) >= 0
             && line[b - 1] != '\\')
             for (; e != b; e--) {
                 if (e == b + 1) {
                     mx_parser_err(var, line[b], 2);
-                    return 1;
+                    return 0;
                 }
                 if (line[e] == line[b] && line[e -1] != '\\') {
                     e--;
@@ -35,7 +37,7 @@ int mx_parser_pais(t_envp *var, char *line) {
                 }
             }
     }
-    return 0;
+    return 1;
 }
 
 void mx_parser_err(t_envp *var, char c, int flag) {

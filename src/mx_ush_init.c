@@ -4,6 +4,7 @@ void mx_ush_init(t_envp *var) {
     t_ush_init *res = mx_ush_struct_init();
     t_history *history = mx_init_story();
     char *ex[] = {"exit", NULL};
+
     while (1) {
         mx_print_var(var, "?");
         if (isatty(0)) //проверка наличия перенаправления потока вывода
@@ -16,7 +17,7 @@ void mx_ush_init(t_envp *var) {
         if (!mx_cal_history(var, res, history)) {
             res->com = mx_strsplit(mx_strtrim(res->iline), ';');
             for (;res->com[res->i]; res->i++) {
-                mx_parser_line(res->com[res->i], &(res->argv), var);
+                mx_parser_line(res->com[res->i], &(res->argv));
                 for (t_comm *head = res->argv; head; head = head->next) {
                     // mx_print_strarr(head->argv->com, " ");
                     mx_get_command(var, head->com);
