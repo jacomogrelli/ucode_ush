@@ -14,7 +14,7 @@ void mx_ush_init(t_envp *var) {
             mx_if_eof(var, ex);
         }
         if (!mx_cal_history(var, res, history)) {
-            res->com = mx_strsplit(mx_del_extra_spaces(res->iline), ';');
+            res->com = mx_strsplit(mx_strtrim(res->iline), ';');
             for (;res->com[res->i]; res->i++) {
                 mx_parser_line(res->com[res->i], &(res->argv), var);
                 for (t_comm *head = res->argv; head; head = head->next) {

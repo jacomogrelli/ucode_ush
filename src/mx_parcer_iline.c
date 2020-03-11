@@ -5,7 +5,7 @@ char **mx_parser_paris(t_envp *var, char *line) {
 
     if (!mx_parser_pais(var, line))
         return NULL;
-    // if (!)
+    line = mx_parser_tilda(line);
     return res;
 }
 
@@ -23,7 +23,7 @@ int mx_parser_pais(t_envp *var, char *line) {
             return 1;
         }
         if (mx_get_char_index(MX_PARS_PAIR, line[b]) >= 0
-            && line[b - 1] != '\\') {
+            && line[b - 1] != '\\')
             for (; e != b; e--) {
                 if (e == b + 1) {
                     mx_parser_err(var, line[b], 2);
@@ -34,7 +34,6 @@ int mx_parser_pais(t_envp *var, char *line) {
                     break;
                 }
             }
-        }
     }
     return 0;
 }
