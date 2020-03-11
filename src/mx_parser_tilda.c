@@ -34,7 +34,7 @@ static void tilda(char **head, char *line, char flag) {
 char *mx_parser_tilda(char *line) {
     char *head = NULL;
 
-    for (int i = 0; line[i]; i++) {
+    for (int i = 0; line[i]; i++)
         if (line[i] == '~') {
             if (line[i + 1] == '\0') {
                 tilda(&head, line, 'd');
@@ -52,6 +52,5 @@ char *mx_parser_tilda(char *line) {
             tilda_user(i, line, &head);
             }
         }
-    }
     return (!head) ? line : head;
 }
