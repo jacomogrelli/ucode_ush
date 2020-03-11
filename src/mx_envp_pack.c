@@ -44,7 +44,6 @@ void mx_envp_replace(t_envp **res, char *data) {
             mx_strdel(&buf_name);
             return;
         }
-
         head = head->next;
     }
     //если не нашли, удаляем буфер от ликов и заталкиваем в начало.
