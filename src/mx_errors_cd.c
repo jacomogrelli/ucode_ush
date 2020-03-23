@@ -46,6 +46,14 @@ static void e_free_mem_err_cd (char *buff_arg, char *arguments) {;
     free(arguments);
 }
 
+static void call_err_func(char **splited_arg, t_errors_cd *errors, 
+                            t_flags_cd *flags_cd) {
+    mx_e_too_many_arg_cd (splited_arg, errors, flags_cd);
+    mx_e_no_dirorfile_cd(splited_arg, errors, flags_cd);
+    mx_e_notpwd_cd(splited_arg, errors,flags_cd);
+    mx_e_nodir_after_split_pwd_cd(splited_arg, errors, flags_cd);
+}
+
 char **mx_errors_cd (char **inp_line, t_errors_cd *errors,
                     t_flags_cd *flags_cd) {
     char **splited_arg = NULL;
@@ -65,10 +73,7 @@ char **mx_errors_cd (char **inp_line, t_errors_cd *errors,
             mx_change_old_pwd_in_cd(splited_arg);
             change_home_dir(splited_arg);
         }
-        mx_e_too_many_arg_cd (splited_arg, errors, flags_cd);
-        mx_e_no_dirorfile_cd(splited_arg, errors, flags_cd);
-        mx_e_notpwd_cd(splited_arg, errors,flags_cd);
-        mx_e_nodir_after_split_pwd_cd(splited_arg, errors, flags_cd);
+        call_err_func(splited_arg, errors, flags_cd);
         e_free_mem_err_cd(buff_arg, arguments);
     }
     return splited_arg;

@@ -9,6 +9,20 @@ static int count_arg(char **com) {
     return count;
 }
 
+static void printf_no_obj(char **com, t_envp *var) {
+    mx_printerr("chdir: no such file or directory: ");
+    mx_printerr(com[1]);
+    mx_printerr("\n");
+    mx_envp_replace(&var, "?=1");
+}
+
+static void change_dir(char **com, t_envp *var) {
+    chdir(com[1]);
+    setenv("OLDPWD", getenv("PWD"), 1);
+    setenv("PWD", com[1], 1);
+    mx_envp_replace(&var, "?=0");
+}
+
 void mx_chdir_command(t_envp *var, char** com) {
     int count = count_arg(com);
 
@@ -21,16 +35,10 @@ void mx_chdir_command(t_envp *var, char** com) {
             chdir(getenv("HOME"));
         else {
             if (mx_dirorfile(com[1]) != 0) {
-                mx_printerr("chdir: no such file or directory: ");
-                mx_printerr(com[1]);
-                mx_printerr("\n");
-                mx_envp_replace(&var, "?=1");
+                printf_no_obj(com, var);
             }
             else {
-                chdir(com[1]);
-                setenv("OLDPWD", getenv("PWD"), 1);
-                setenv("PWD", com[1], 1);
-                mx_envp_replace(&var, "?=0");
+                change_dir(com, var);
             }
         }
     }
