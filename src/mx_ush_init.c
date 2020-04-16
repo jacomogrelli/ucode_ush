@@ -15,16 +15,19 @@ void mx_ush_init(t_envp *var) {
             mx_if_eof(var, ex);
         }
         if (!mx_cal_history(var, res, history)) {
-            res->com = mx_strsplit(mx_strtrim(res->iline), ';');
-            for (;res->com[res->i]; res->i++) {
-                mx_parser_line(res->com[res->i], &(res->argv));
-                for (t_comm *head = res->argv; head; head = head->next) {
-                    // mx_print_strarr(head->argv->com, " ");
-                    mx_get_command(var, head->com);
-                }
-                mx_parser_cleaner(&(res->argv));
-            }
-            mx_ush_rescleaner(&res);
+        // раскомментить после парсинга
+            // res->com = mx_strsplit(mx_strtrim(res->iline), ';');
+            // for (;res->com[res->i]; res->i++) {
+            //     // mx_parser_line(res->com[res->i], &(res->argv));
+            //     for (t_comm *head = res->argv; head; head = head->next) {
+            //         // mx_print_strarr(head->argv->com, " ");
+            //         mx_get_command(var, head->com);
+            //     }
+            //     mx_parser_cleaner(&(res->argv));
+            // }
+            // mx_ush_rescleaner(&res);
+            res->com = mx_strsplit(mx_strtrim(res->iline), ' ');
+            mx_get_command(var, res->com);
         }
     }
 }

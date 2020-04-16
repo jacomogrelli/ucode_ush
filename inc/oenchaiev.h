@@ -132,6 +132,7 @@ void mx_export_run(t_envp *var, char **com);
 //------set/unset------
 void mx_unset_run(t_envp *var, char **com);
 void mx_set_run(t_envp *var, char **com);
+t_envp *mx_unset_envp_del(t_envp *var, char *com);
 
 //------export------
 void mx_export_run(t_envp *var, char **com);
@@ -141,8 +142,12 @@ void mx_export_from_envp(t_envp *var, char *com);
 
 //------env------
 void mx_env_run(t_envp *var, char **com);
-void mx_env_func(t_envp *var, char **com);
-void mx_env_getp(t_nv *res, char **com);
+void mx_env_flag_u(t_envp *var, char **com, int *pos);
+void mx_env_flag_i(t_envp *var, char **com, int *pos);
+void mx_env_flag_p(t_envp *var, char **com, int *pos);
+void mx_env_err_out(char c, int flag);
+void mx_env_err_handler(char **com);
+// void mx_env_flag_i_unset(t_envp *var, char *environ)
 
 //------signal------
 // void mx_signal_run(t_envp *var);
