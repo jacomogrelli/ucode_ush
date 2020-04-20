@@ -35,6 +35,13 @@ typedef struct s_history {
     int spaces_second;
 } t_history;
 
+typedef struct s_ignored_symb {
+    int count;
+    int ign_count;
+    int first_index_no_ign;
+    int last_index_no_ign; 
+} t_ignored_symb;
+
 char **mx_errors_cd (char **inp_line, t_errors_cd *errors, t_flags_cd *flags_cd);
 char **mx_mystrsplit(const char *s, char c);
 void mx_e_too_many_arg_cd (char **splited_arg, t_errors_cd *errors, t_flags_cd *flags_cd);
@@ -72,4 +79,7 @@ void mx_return_command(t_envp *var, char **com);
 void mx_chdir_command(t_envp *var, char** com);
 void mx_apropos_command(t_envp *var, char **com);
 void mx_arch_command(t_envp *var, char** com);
+char **mx_main_parse (char **splited_inp);
+char **mx_ignore_symb (char **splited_inp);
+
 #endif

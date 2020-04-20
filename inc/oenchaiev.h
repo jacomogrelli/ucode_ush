@@ -21,6 +21,8 @@ typedef struct s_ush_init {
     size_t bufsize;
     char *iline;
     char **com;
+    char **solo_com;
+    char **ignored_com;
     int i;
     t_comm *argv;
 }              t_ush_init;

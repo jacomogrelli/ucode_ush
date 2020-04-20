@@ -44,7 +44,7 @@ void mx_print_e_for_echo(char *str) {
                 break;
             }
             case 'r': {
-                printf("%c", '\f');
+                printf("%c", '\r');
                 i++;
                 break;
             }
