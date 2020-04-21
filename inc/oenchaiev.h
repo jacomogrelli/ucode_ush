@@ -145,8 +145,11 @@ void mx_env_run(t_envp *var, char **com);
 void mx_env_flag_u(t_envp *var, char **com, int *pos);
 void mx_env_flag_i(t_envp *var, char **com, int *pos);
 void mx_env_flag_p(t_envp *var, char **com, int *pos);
+void mx_env_flag_equally(t_envp *var, char **com, int *pos);
 void mx_env_err_out(char c, int flag);
 void mx_env_err_handler(char **com);
+void mx_env_modechoose(t_envp *var, char **com,int *pos);
+void mx_env_main_empty(void);
 // void mx_env_flag_i_unset(t_envp *var, char *environ)
 
 //------signal------

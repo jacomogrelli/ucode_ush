@@ -15,7 +15,9 @@ void mx_env_run(t_envp *var, char **com) {
         mx_env_flag_i(var, com, &pos);
         mx_env_flag_u(var, com, &pos);
         mx_env_flag_p(var, com, &pos);
-        // printf("pos = %d\n", pos);
+        mx_env_flag_equally(var, com, &pos);
+        mx_env_modechoose(var, com, &pos);
+        printf("pos = %d\n", pos);
         // mx_print_var(var, "LANG");
         // mx_printstr(getenv("PATH"));
         // mx_printstr("after break\n");

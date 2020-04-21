@@ -67,6 +67,7 @@ SRC		=	main.c \
 			mx_parser_var.c \
 			mx_parser_array.c \
 			mx_env_flags.c \
+			mx_env_main.c \
 
 
 SRCS	=	$(addprefix $(SRCD)/, $(SRC))
