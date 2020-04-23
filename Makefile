@@ -73,13 +73,13 @@ SRC		=	main.c \
 SRCS	=	$(addprefix $(SRCD)/, $(SRC))
 OBJS	=	$(addprefix $(OBJD)/, $(SRC:%.c=%.o))
 
-all: install
+all: $(LMXD) $(NAME)
 
 $(FILE:a/%=%)
 
-install: $(LMXA) $(NAME)
+#install: $(LMXA) $(NAME)
 
-$(NAME): $(OBJS)
+$(NAME): $(LMXA) $(OBJS)
 	@clang $(CFLG) $(OBJS) -L$(LMXD) -lmx -o $@
 	@printf "\r\33[2K$@ \033[32;1mcreated\033[0m\n"
 
@@ -91,6 +91,8 @@ $(OBJS): | $(OBJD)
 
 $(OBJD):
 	@mkdir -p $@
+
+$(LMXD): $(LMXA)
 
 $(LMXA):
 	@make -sC $(LMXD)
