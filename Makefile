@@ -67,6 +67,7 @@ SRC		=	main.c \
 			mx_main_parse.c \
 			mx_ignore_symb.c \
 			mx_second_parse.c \
+			mx_or_and.c \
 
 SRCS	=	$(addprefix $(SRCD)/, $(SRC))
 OBJS	=	$(addprefix $(OBJD)/, $(SRC:%.c=%.o))

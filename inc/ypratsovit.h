@@ -83,5 +83,7 @@ char **mx_main_parse (char **splited_inp);
 char **mx_ignore_symb (char **splited_inp);
 char *mx_second_parse(char *ignored_com);
 char *mx_del_brack(char * ignored_com);
+char **mx_or_and(char *ignored_brack);
+int *mx_fill_logical_arr(char *ignored_brack);
 
 #endif

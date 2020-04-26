@@ -62,9 +62,34 @@ void mx_ush_init(t_envp *var) {
                 while(res->ignored_com[count_com]) {
                     res->ignored_com[count_com] = mx_parser_tilda(res->ignored_com[count_com]);
                     res->ignored_brack = mx_second_parse(res->ignored_com[count_com]);
-                    res->solo_com = mx_strsplit(res->ignored_brack, ' ');
-                    mx_get_command(var, res->solo_com);
-                    free(res->solo_com);
+                    res->splited_or_and = mx_or_and(res->ignored_brack);
+                    res->logical_arr = mx_fill_logical_arr(res->ignored_brack);
+                    res->count_logic = 0;
+                    res->do_whith_logic = 0;
+                    while (res->splited_or_and[res->count_logic]) {
+                        if (res->count_logic == 0) {
+                            res->solo_com = mx_strsplit(res->splited_or_and[res->count_logic], ' ');
+                            mx_get_command(var, res->solo_com);
+                            free(res->solo_com);
+                            res->count_logic++;
+                            continue;
+                        }
+                        if (res->logical_arr[res->do_whith_logic] == 2) {
+                            res->count_logic++;
+                            res->do_whith_logic++;
+                            continue;
+                        }
+                        else if (res->logical_arr[res->do_whith_logic] == 1){
+                            res->solo_com = mx_strsplit(res->splited_or_and[res->count_logic], ' ');
+                            mx_get_command(var, res->solo_com);
+                            res->do_whith_logic++;
+                            free(res->solo_com);
+                        }
+                        res->count_logic++;
+                    }
+                    exit(0);
+                    // res->solo_com = mx_strsplit(res->ignored_brack, ' ');
+                    // mx_get_command(var, res->solo_com);
                     free(res->ignored_brack);
                     count_com++;
                 }
