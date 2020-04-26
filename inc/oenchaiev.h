@@ -111,6 +111,7 @@ t_wh *mx_which_get_fp(t_envp *var, char **com, t_wh *res);
 void mx_which_cleaner(t_envp *var, t_wh *res, int flag);
 void mx_which_out(t_envp *var, t_wh *res, char **com);
 void mx_which_finder(t_envp *var, t_wh *res, char **com);
+void mx_which_bin_finder(t_envp *var, t_wh *res, char **com);
 
 //------exec------
 void mx_run_exec(char **com, t_envp *var);

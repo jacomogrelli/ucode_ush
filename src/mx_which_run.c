@@ -31,17 +31,22 @@ t_wh *mx_which_get_fp(t_envp *var, char **com, t_wh *res) {
 void mx_which_out(t_envp *var, t_wh *res, char **com) {
     t_envp *head = res->find;
 
-    for (; com[res->pos] && res->find; res->pos++) {
-        for (bool key_a = true; res->find; res->find = res->find->next) {
-            if (strcmp(res->find->name, com[res->pos]))
-                break;
-            if (!strcmp(com[res->pos], res->find->name) && key_a) {
+    for (; com[res->pos]; res->pos++) {
+        if (!res->find)
+            printf("%s not found\n", com[res->pos]);
+        for (;res->find; res->find = res->find->next) {
+            if (!strcmp(com[res->pos], res->find->name)) {
                 if (res->flags[1] != '1')
                     printf("%s\n", res->find->val);
-                if (res->flags[0] == '0')
-                    key_a = false;
+                if (res->flags[0] == '0' || !res->find->next)
+                    break;
+            }
+            if (!res->find->next) {
+                res->key_s = false;
+                printf("%s not found\n", com[res->pos]);
             }
         }
+        res->find = head;
     }
     res->find = head;
     if (!res->key_s)
@@ -50,13 +55,30 @@ void mx_which_out(t_envp *var, t_wh *res, char **com) {
         mx_envp_replace(&var, "?=0");
 }
 
+void mx_which_bin_finder(t_envp *var, t_wh *res, char **com) {
+    char *bin[] = {"env", "export", "set", "unset", "pwd", "exit", "cd",
+                   "which", "echo", "true", "false", "help", "return",
+                   "chdir", "apropos", "arch", NULL};
+    int ind = res->pos;
+
+    if (var)
+    for (;com[ind]; ind++)
+        for (int i = 0; bin[i]; i++)
+            if (!strcmp(com[ind], bin[i])) {
+                res->key_s = true;
+                mx_which_add_back(&(res->find), com[ind], mx_strjoin(com[ind],
+                                  ": shell built-in command"));
+            }
+}
+
 void mx_which_finder(t_envp *var, t_wh *res, char **com) {
     DIR *dirp;
     struct dirent *bf;
     int ind = res->pos;
 
     for (;com[ind]; ind++) {
-        res->key_s = false;
+        if (!res->key_s)
+            res->key_s = false;
         for (int i = 0; res->path[i]; i++) {
             if((dirp = opendir(res->path[i]))) {
                 while ((bf = readdir(dirp))) {
@@ -90,6 +112,7 @@ void mx_which_run(t_envp *var, char **com) {
         mx_which_cleaner(var, res, 1);
         return;
     }
+    mx_which_bin_finder(var, res, com);
     mx_which_finder(var, res, com);
     mx_which_cleaner(var, res, 0);
 }
