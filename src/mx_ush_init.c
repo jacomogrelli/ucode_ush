@@ -87,7 +87,6 @@ void mx_ush_init(t_envp *var) {
                         }
                         res->count_logic++;
                     }
-                    exit(0);
                     // res->solo_com = mx_strsplit(res->ignored_brack, ' ');
                     // mx_get_command(var, res->solo_com);
                     free(res->ignored_brack);
