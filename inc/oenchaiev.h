@@ -23,6 +23,8 @@ typedef struct s_ush_init {
     char **com;
     char **solo_com;
     char **ignored_com;
+    char *ignored_brack;
+    char *splited_or_and;
     int i;
     t_comm *argv;
 }              t_ush_init;

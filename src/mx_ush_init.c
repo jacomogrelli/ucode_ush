@@ -58,13 +58,15 @@ void mx_ush_init(t_envp *var) {
                 do_next = true;
 
                 res->ignored_com = mx_main_parse(res->com);
-                //exit(0);
                 //free_ignored_com(res->ignored_com);
                 while(res->ignored_com[count_com]) {
-                    res->solo_com = mx_strsplit(res->ignored_com[count_com], ' ');
+                    res->ignored_com[count_com] = mx_parser_tilda(res->ignored_com[count_com]);
+                    res->ignored_brack = mx_second_parse(res->ignored_com[count_com]);
+                    res->solo_com = mx_strsplit(res->ignored_brack, ' ');
                     mx_get_command(var, res->solo_com);
-                    count_com++;
                     free(res->solo_com);
+                    free(res->ignored_brack);
+                    count_com++;
                 }
                 //free(res->ignored_com);
             //}

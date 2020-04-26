@@ -81,5 +81,7 @@ void mx_apropos_command(t_envp *var, char **com);
 void mx_arch_command(t_envp *var, char** com);
 char **mx_main_parse (char **splited_inp);
 char **mx_ignore_symb (char **splited_inp);
+char *mx_second_parse(char *ignored_com);
+char *mx_del_brack(char * ignored_com);
 
 #endif
