@@ -15,7 +15,7 @@
 
 // static void free_solo_command(char **solo_command) {
 //     int count = 0;
-    
+
 //     while (solo_command[count]) {
 //         free(solo_command[count]);
 //     }

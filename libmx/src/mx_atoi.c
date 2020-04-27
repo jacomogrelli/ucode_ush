@@ -4,7 +4,7 @@ int mx_atoi(const char *str) {
     int i = 0;
     int sing = 1;
     int res = 0;
-    
+
     while (mx_isspace(str[i])) {
         i++;
     }

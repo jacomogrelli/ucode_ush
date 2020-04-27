@@ -61,18 +61,42 @@ typedef struct s_nv {
     char **com;
 }              t_nv;
 
+// < exit
+// <
+
+// < cd ..; pwd; exit
+// <
+
+// < export UNIT=location; export UFK=p2p ucode=cbl; echo "\$var1 = $UNIT, \$var2 = $UFK, \$var3 = $ucode"; exit
+// <
+// < $var1 =  $var2 =  $var3 =
+// ---
+// > $var1 = location, $var2 = p2p, $var3 = cbl
+
+// < export UNIT=location UFK=p2p ucode=cbl ; echo "\$var1 = $UNIT, \$var2 = $UFK, \$var3 = $ucode" ; unset UNIT UFK ucode ; echo "\$var1 = $UNIT, \$var2 = $UFK, \$var3 = $ucode" ; exit
+// <
+// < $var1 =  $var2 =  $var3 =
+// < $var1 =  $var2 =  $var3 =
+// ---
+// > $var1 = location, $var2 = p2p, $var3 = cbl
+// > $var1 = , $var2 = , $var3 =
+
+
 //------parser------
-void mx_parser(char *line, t_comm **res, char c, t_envp *var);
-void mx_parser_line(char *line, t_comm **res, t_envp *var);
+void mx_parser(char *line, t_comm **res, char c);
+void mx_parser_line(char *line, t_comm **res);
 void mx_parser_cleaner(t_comm **res);
 void mx_ush_rescleaner(t_ush_init **res);
 t_ush_init *mx_ush_struct_init();
-char **mx_parser_paris(t_envp *var, char *line);
 int mx_parser_pais(t_envp *var, char *line);
 char *mx_parser_tilda(char *line);
 void mx_parser_err(t_envp *var, char c, int flag);
-
-
+char *mx_parser_var(char *line);
+char **mx_parser_paris(char *line);
+void mx_parser_array(char *line, char ***res);
+void mx_parser_array_delsh(char **line);
+void mx_parser_array_br(char *line, int *il, int *iar, char **res);
+void mx_parser_array_getfirst(char *line, int *il, int *iar, char **res);
 
 //------main part------
 void mx_ush_init(t_envp *var);
@@ -94,6 +118,7 @@ t_wh *mx_which_get_fp(t_envp *var, char **com, t_wh *res);
 void mx_which_cleaner(t_envp *var, t_wh *res, int flag);
 void mx_which_out(t_envp *var, t_wh *res, char **com);
 void mx_which_finder(t_envp *var, t_wh *res, char **com);
+void mx_which_bin_finder(t_envp *var, t_wh *res, char **com);
 
 //------exec------
 void mx_run_exec(char **com, t_envp *var);
@@ -115,6 +140,7 @@ void mx_export_run(t_envp *var, char **com);
 //------set/unset------
 void mx_unset_run(t_envp *var, char **com);
 void mx_set_run(t_envp *var, char **com);
+t_envp *mx_unset_envp_del(t_envp *var, char *com);
 
 //------export------
 void mx_export_run(t_envp *var, char **com);
@@ -124,8 +150,16 @@ void mx_export_from_envp(t_envp *var, char *com);
 
 //------env------
 void mx_env_run(t_envp *var, char **com);
-void mx_env_func(t_envp *var, char **com);
-void mx_env_getp(t_nv *res, char **com);
+void mx_env_flag_u(t_envp *var, char **com, int *pos);
+void mx_env_flag_i(t_envp *var, char **com, int *pos);
+void mx_env_flag_p(t_envp *var, char **com, int *pos);
+void mx_env_flag_equally(t_envp *var, char **com, int *pos);
+void mx_env_err_out(char c, int flag);
+void mx_env_err_handler(char **com);
+void mx_env_modechoose(t_envp *var, char **com,int *pos);
+void mx_env_main_empty(void);
+int mx_env_get_pos(char **com, t_envp *var);
+// void mx_env_flag_i_unset(t_envp *var, char *environ)
 
 //------signal------
 // void mx_signal_run(t_envp *var);

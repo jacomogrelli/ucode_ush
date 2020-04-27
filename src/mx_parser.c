@@ -11,39 +11,38 @@ void mx_parser_cleaner(t_comm **res) {
     free((*res));
 }
 
-void mx_parser(char *line, t_comm **res, char c, t_envp *var) {
+void mx_parser(char *line, t_comm **res, char c) {
     t_comm *ptr = *res;
 
     if (ptr) {
         while (ptr->next)
             ptr = ptr->next;
         ptr->next = (t_comm *)malloc(sizeof(t_comm));
-        ptr->next->com = mx_strsplit(line, ' '); //ЗАМЕНИТЬ НА ДАЛЬНЕЙШИЙ ПАРСЕР
+        ptr->next->com = mx_parser_paris(line);
         ptr->next->logic = c;
         ptr->next->next = NULL;
     }
     else {
         (*res) = (t_comm *)malloc(sizeof(t_comm));
-        (*res)->com = mx_strsplit(line, ' '); //ЗАМЕНИТЬ НА ДАЛЬНЕЙШИЙ ПАРСЕР
+        (*res)->com = mx_parser_paris(line);
         (*res)->logic = c;
         (*res)->next = NULL;
     }
-    if (var)
     free(line);
 }
 
-void mx_parser_line(char *line, t_comm **res, t_envp *var) {
+void mx_parser_line(char *line, t_comm **res) {
     int count = 0;
 
     for (int i = 0; line[i]; i++, count++) {
         if ((line[i] == '&' && line[i + 1] == '&')
             || (line[i] == '|' && line[i + 1] == '|')) {
-            mx_parser(strndup(line + i - count, count), res, line[i], var);
+            mx_parser(strndup(line + i - count, count), res, line[i]);
             count = 0;
             i += 2;
         }
         if (line[i + 1] == '\0') {
-            mx_parser(strndup(line + i - count, count + 1), res, line[i], var);
+            mx_parser(strndup(line + i - count, count + 1), res, line[i]);
             break;
         }
     }

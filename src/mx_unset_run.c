@@ -1,6 +1,6 @@
 #include "ush.h"
 
-static t_envp *unset_envp_del(t_envp *var, char *com) {
+t_envp *mx_unset_envp_del(t_envp *var, char *com) {
     t_envp *head = var;
     t_envp *head2 = var;
     int count = 0;
@@ -51,7 +51,7 @@ void mx_print_var(t_envp *var, char *com) {
 void mx_unset_run(t_envp *var, char **com) {
     for (int i = 1; com[i]; i++) {
         unsetenv(com[i]);
-        var = unset_envp_del(var, com[i]);
+        var = mx_unset_envp_del(var, com[i]);
     }
     mx_envp_replace(&var, "?=0");
     return;
