@@ -14,7 +14,11 @@ void mx_env_run(t_envp *var, char **com) {
         mx_env_flag_p(var, com, &pos);
         mx_env_flag_equally(var, com, &pos);
         mx_env_modechoose(var, com, &pos);
-        exit (EXIT_SUCCESS);
+        exit(errno);
     }
     wpid = waitpid(pid, &status, WUNTRACED);
+    if (WEXITSTATUS(status) == 22 || WEXITSTATUS(status) == 0)
+        mx_envp_replace(&var, "?=0");
+    else
+        mx_envp_replace(&var, "?=1");
 }

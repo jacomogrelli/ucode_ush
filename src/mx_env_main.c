@@ -8,14 +8,14 @@ void mx_env_modechoose(t_envp *var, char **com,int *pos) {
         mx_env_main_empty();
         return;
     }
-    var = mx_envp_i_fill();
+    // var = mx_envp_i_fill();
     for (;com[(*pos)]; (*pos)++, com_count++);
     (*pos) -= com_count;
     com_new = malloc(sizeof(char *) * com_count);
     for (int i = 0; i < com_count; i++, (*pos)++)
         com_new[i] = strdup(com[(*pos)]);
     com_new[com_count] = NULL;
-    mx_run_exec(com_new, var);
+    mx_get_command(var, com_new);
 }
 
 void mx_env_main_empty(void) {

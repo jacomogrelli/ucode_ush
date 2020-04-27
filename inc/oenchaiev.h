@@ -151,6 +151,7 @@ void mx_env_err_out(char c, int flag);
 void mx_env_err_handler(char **com);
 void mx_env_modechoose(t_envp *var, char **com,int *pos);
 void mx_env_main_empty(void);
+int mx_env_get_pos(char **com, t_envp *var);
 // void mx_env_flag_i_unset(t_envp *var, char *environ)
 
 //------signal------
