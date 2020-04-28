@@ -72,7 +72,7 @@ SRC		=	main.c \
 			mx_parser_array.c \
 			mx_env_flags.c \
 			mx_env_main.c \
-
+			mx_change_var.c \
 
 SRCS	=	$(addprefix $(SRCD)/, $(SRC))
 OBJS	=	$(addprefix $(OBJD)/, $(SRC:%.c=%.o))

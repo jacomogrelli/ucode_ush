@@ -42,6 +42,15 @@ typedef struct s_ignored_symb {
     int last_index_no_ign; 
 } t_ignored_symb;
 
+typedef struct s_vars {
+    int vars;
+    char **change_var;
+    char **buffer_vars;
+    char *res_str;
+    char *buffer_replace;
+    char *get_from_env;
+} t_vars;
+
 char **mx_errors_cd (char **inp_line, t_errors_cd *errors, t_flags_cd *flags_cd);
 char **mx_mystrsplit(const char *s, char c);
 void mx_e_too_many_arg_cd (char **splited_arg, t_errors_cd *errors, t_flags_cd *flags_cd);
@@ -85,5 +94,6 @@ char *mx_second_parse(char *ignored_com);
 char *mx_del_brack(char * ignored_com);
 char **mx_or_and(char *ignored_brack);
 int *mx_fill_logical_arr(char *ignored_brack);
+char *mx_change_var(char *ignored_com);
 
 #endif
