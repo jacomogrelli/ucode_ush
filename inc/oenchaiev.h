@@ -28,6 +28,7 @@ typedef struct s_ush_init {
     int *logical_arr;
     int count_logic;
     int do_whith_logic;
+    char *change_var;
     int i;
     t_comm *argv;
 }              t_ush_init;
