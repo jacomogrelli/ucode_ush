@@ -79,9 +79,9 @@ void mx_which_finder(t_envp *var, t_wh *res, char **com) {
     for (;com[ind]; ind++) {
         if (!res->key_s)
             res->key_s = false;
-        for (int i = 0; res->path[i]; i++) {
+        for (int i = 0; res->path[i]; i++)
             if((dirp = opendir(res->path[i]))) {
-                while ((bf = readdir(dirp))) {
+                while ((bf = readdir(dirp)))
                     if (!(strcmp(bf->d_name, com[ind]))) {
                         res->key_s = true;
                         char *buf = mx_strjoin(res->path[i], "/");
@@ -90,10 +90,8 @@ void mx_which_finder(t_envp *var, t_wh *res, char **com) {
                                           mx_strjoin(buf, com[ind]));
                         mx_strdel(&buf);
                     }
-                }
                 closedir(dirp);
             }
-        }
     }
     mx_which_out(var, res, com);
 }

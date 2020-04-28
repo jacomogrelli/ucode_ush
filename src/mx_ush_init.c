@@ -44,7 +44,7 @@ void mx_ush_init(t_envp *var) {
 
     while (1) {
         count_com = 0;
-        mx_print_var(var, "?");
+        // mx_print_var(var, "?");
         if (isatty(0)) //проверка наличия перенаправления потока вывода
             mx_uniq_prompt();
         signal(SIGINT, mx_handler);

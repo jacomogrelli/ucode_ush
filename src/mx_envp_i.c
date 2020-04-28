@@ -57,7 +57,7 @@ static t_envp *envp_getpwd(int flag, t_envp *res) {
 t_envp *mx_envp_i_fill(void) {
     t_envp *res = NULL;
 
-    if (!(getenv("PWD")))
+    // if (!(getenv("PWD")))
         res = envp_getpwd(1, res);
     if (!(getenv("HOME")))
         res = envp_gethomelvl(1, res);
