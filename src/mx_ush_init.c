@@ -68,7 +68,7 @@ void mx_ush_init(t_envp *var) {
                     res->do_whith_logic = 0;
                     while (res->splited_or_and[res->count_logic]) {
                         if (res->count_logic == 0) {
-                            res->change_var = mx_change_var(res->splited_or_and[res->count_logic]);
+                            res->change_var = mx_change_var(res->splited_or_and[res->count_logic], var);
                             res->solo_com = mx_strsplit(res->change_var, ' ');
                             mx_get_command(var, res->solo_com);
                             free(res->solo_com);
@@ -81,7 +81,7 @@ void mx_ush_init(t_envp *var) {
                             continue;
                         }
                         else if (res->logical_arr[res->do_whith_logic] == 1){
-                            res->change_var = mx_change_var(res->splited_or_and[res->count_logic]);
+                            res->change_var = mx_change_var(res->splited_or_and[res->count_logic], var);
                             res->solo_com = mx_strsplit(res->change_var, ' ');
                             mx_get_command(var, res->solo_com);
                             res->do_whith_logic++;
