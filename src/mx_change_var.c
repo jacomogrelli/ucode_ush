@@ -62,7 +62,7 @@ static void fill_vars_arr(char **change_var, char *ignored_com, char **buffer_va
     }
 }
 
-char *mx_change_var(char *ignored_com) {
+char *mx_change_var(char *ignored_com, t_envp *var) {
     t_vars st_vars;
     st_vars.vars = count_vars(ignored_com);
     st_vars.change_var = init_buff_vars(st_vars.vars);
@@ -77,10 +77,14 @@ char *mx_change_var(char *ignored_com) {
         if (st_vars.get_from_env)
             st_vars.buffer_replace =  mx_replace_substr(st_vars.res_str, st_vars.buffer_vars[i], st_vars.get_from_env);
         else {
-            // if (mx_strcmp(st_vars.change_var[i], "?") == 0) {
-            //     st_vars.buffer_replace =  mx_replace_substr(st_vars.res_str, st_vars.buffer_vars[i], mx_itoa());
-            // }
-            st_vars.buffer_replace =  mx_replace_substr(st_vars.res_str, st_vars.buffer_vars[i], "");
+            if (mx_strcmp(st_vars.change_var[i], "?") == 0) {
+                for (t_envp *head = var; head; head = head->next) {
+                    if (!mx_strcmp(head->name, "?"))
+                        st_vars.buffer_replace = mx_replace_substr(st_vars.res_str, st_vars.buffer_vars[i], head->val);
+                }
+            }
+            else
+                st_vars.buffer_replace =  mx_replace_substr(st_vars.res_str, st_vars.buffer_vars[i], "");
         }   
         free(st_vars.res_str);
         st_vars.res_str = mx_strnew(mx_strlen(st_vars.buffer_replace));

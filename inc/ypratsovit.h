@@ -94,6 +94,7 @@ char *mx_second_parse(char *ignored_com);
 char *mx_del_brack(char * ignored_com);
 char **mx_or_and(char *ignored_brack);
 int *mx_fill_logical_arr(char *ignored_brack);
-char *mx_change_var(char *ignored_com);
+char *mx_change_var(char *ignored_com, t_envp *var);
+int *mx_indexes_double_bracks(char *str);
 
 #endif
