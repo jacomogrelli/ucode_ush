@@ -80,20 +80,28 @@ char **mx_ignore_symb (char **splited_inp) {
                     && indexes_double_bracks[count_double_bracks] != 1000
                     && indexes_double_bracks[count_double_bracks + 1] != 1000
                     && splited_inp[ignored_struct.count][i + 1] != '\\') {
-                    ignored_inp[ignored_struct.count][ignored_struct.ign_count] = 
-                    splited_inp[ignored_struct.count][i];
-                    ignored_struct.ign_count++;
+                        ignored_inp[ignored_struct.count][ignored_struct.ign_count] = 
+                        splited_inp[ignored_struct.count][i];
+                        ignored_struct.ign_count++;
                 }
                 else {
-                    i++;
-                    ignored_inp[ignored_struct.count][ignored_struct.ign_count] = 
-                    splited_inp[ignored_struct.count][i];
-                    ignored_struct.ign_count++;
+                    if (splited_inp[ignored_struct.count][i + 1] == ' ' 
+                        && splited_inp[ignored_struct.count][i - 1] != '\\' ) {
+                        i++;
+                        ignored_inp[ignored_struct.count][ignored_struct.ign_count] = '#';
+                        ignored_struct.ign_count++;
+                    }
+                    else {
+                        i++;
+                        ignored_inp[ignored_struct.count][ignored_struct.ign_count] = 
+                        splited_inp[ignored_struct.count][i];
+                        ignored_struct.ign_count++;
+                    }
                 }
             }
             else {
                 ignored_inp[ignored_struct.count][ignored_struct.ign_count] = 
-                    splited_inp[ignored_struct.count][i];
+                splited_inp[ignored_struct.count][i];
                 ignored_struct.ign_count++;
             }
         }
