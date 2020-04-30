@@ -73,6 +73,24 @@ static char *join_for_echo(char **splited_input, t_flags_echo *flags_echo) {
     return buff;
 }
 
+static void ebaniy_auditor(char *splited_str, t_flags_echo *flags_echo) {
+    if (!flags_echo->act_flag || flags_echo->n_flag) {
+        if (splited_str)
+            printf("%s", splited_str);
+        else
+            printf("%s", "\n");
+    }
+    else {
+        if (flags_echo->E_flag)
+            printf("%s",splited_str);
+        else if (flags_echo->e_flag)
+            mx_print_e_for_echo(splited_str);
+            //e_flag_echo(splited_str);
+    }
+    if (!flags_echo->n_flag)
+        printf("%s", "\n");
+}
+
 void mx_run_echo_command(t_envp *var, char **splited_input) {
     t_flags_echo *flags_echo = (t_flags_echo *)malloc(sizeof(t_flags_echo));
     char *splited_str = NULL;
@@ -83,21 +101,7 @@ void mx_run_echo_command(t_envp *var, char **splited_input) {
     else {
         change_til(splited_input);
         splited_str = join_for_echo(splited_input, flags_echo);
-        if (!flags_echo->act_flag || flags_echo->n_flag) {
-            if (splited_str)
-                printf("%s", splited_str);
-            else
-                printf("%s", "\n");
-        }
-        else {
-            if (flags_echo->E_flag)
-                printf("%s",splited_str);
-            else if (flags_echo->e_flag)
-                mx_print_e_for_echo(splited_str);
-                //e_flag_echo(splited_str);
-        }
-        if (!flags_echo->n_flag)
-            printf("%s", "\n");
+        ebaniy_auditor(splited_str, flags_echo);
     }
     free(flags_echo);
     free(splited_str);

@@ -28,7 +28,8 @@ t_history *mx_init_story() {
 
 void mx_save_story(char *input_line, t_history *history) {
     history->value[history->count] = mx_strnew(mx_strlen(input_line));
-    history->value[history->count] = mx_strcpy(history->value[history->count], input_line);
+    history->value[history->count] = mx_strcpy(history->value[history->count],
+                                               input_line);
     history->count++;
 }
 

@@ -32,7 +32,7 @@ void mx_which_out(t_envp *var, t_wh *res, char **com) {
     t_envp *head = res->find;
 
     for (; com[res->pos]; res->pos++) {
-        if (!res->find)
+        if (!res->find && res->flags[1] == '0')
             printf("%s not found\n", com[res->pos]);
         for (;res->find; res->find = res->find->next) {
             if (!strcmp(com[res->pos], res->find->name)) {
@@ -43,7 +43,8 @@ void mx_which_out(t_envp *var, t_wh *res, char **com) {
             }
             if (!res->find->next) {
                 res->key_s = false;
-                printf("%s not found\n", com[res->pos]);
+                if (res->flags[1] == '0')
+                    printf("%s not found\n", com[res->pos]);
             }
         }
         res->find = head;

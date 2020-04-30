@@ -70,9 +70,13 @@ void mx_run_exec(char **com, t_envp *var) {
     if (pid == 0) {
         signal(SIGINT, SIG_DFL);
         signal(SIGTSTP, SIG_DFL);
-        if ((execvp(com[0], com)) < 0) {
-            exit (errno);
+        if (!getenv("PATH")) {
+            if ((execv(com[0], com)) < 0)
+                exit (errno);
+            exit (EXIT_SUCCESS);
         }
+        if ((execvp(com[0], com)) < 0)
+            exit (errno);
         exit (EXIT_SUCCESS);
     }
     wpid = waitpid(pid, &status, WUNTRACED);
