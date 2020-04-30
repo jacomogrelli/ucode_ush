@@ -65,11 +65,11 @@ void mx_ush_init(t_envp *var) {
                     res->change_var = mx_change_var(res->ignored_brack, var);
                     res->splited_or_and = mx_or_and(res->change_var);
                     res->count_logic = 0;
-                    while (res->splited_or_and[res->count_logic]) {
-                        res->solo_com = mx_strsplit(res->splited_or_and[res->count_logic], ' ');
+                    //while (res->splited_or_and[res->count_logic]) {
+                        res->solo_com = mx_strsplit(res->change_var, ' ');
                         mx_get_command(var, res->solo_com);
-                        res->count_logic++;
-                    }
+                        //res->count_logic++;
+                    //}
                     // res->solo_com = mx_strsplit(res->ignored_brack, ' ');
                     // mx_get_command(var, res->solo_com);
                     //free(res->ignored_brack);
