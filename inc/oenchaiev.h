@@ -110,6 +110,7 @@ void mx_push_var();
 void mx_run_exit(t_envp *var, char **com);
 //------pwd------
 void mx_pwd_run(t_envp *var, char **com);
+void mx_pwd_replace(char **iline);
 //------which------
 void mx_which_run(t_envp *var, char **com);
 void mx_which_add_back(t_envp **res, char *name, char *val);

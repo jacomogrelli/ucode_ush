@@ -74,6 +74,7 @@ SRC		=	main.c \
 			mx_env_main.c \
 			mx_change_var.c \
 			mx_buffer_for_ignored_symb.c \
+			mx_pwd_replace.c \
 
 SRCS	=	$(addprefix $(SRCD)/, $(SRC))
 OBJS	=	$(addprefix $(OBJD)/, $(SRC:%.c=%.o))
