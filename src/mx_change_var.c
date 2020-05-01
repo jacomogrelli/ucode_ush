@@ -23,27 +23,31 @@ static char **init_buff1_vars(int vars) {
     return res;
 } 
 
+static t_buffer_aud_vars init_struct_aud_vars() {
+    t_buffer_aud_vars st_buffer_aud_vars;
+
+    st_buffer_aud_vars.check = 0;
+    st_buffer_aud_vars.te = 0;
+    st_buffer_aud_vars.small_count = 0;
+
+    return st_buffer_aud_vars;
+}
+
 static char **fill_vars_arr(char **change_var, char *ignored_com, char **buffer_vars) {
+    t_buffer_aud_vars st_buffer_aud_vars = init_struct_aud_vars();
     int buffer_count = 0;
-    bool check = false;
     char *buffer = mx_strnew(2000);
-    int small_count = 0;
-    int te = 0;
     char **buffer_split = NULL;
 
     for (int i = 0; i < mx_strlen(ignored_com); i++) {
         if (ignored_com[i] == '$' && ignored_com[i + 1] != ' ' && ignored_com[i + 1] != '#') {
-            check = true;
+            st_buffer_aud_vars.check = true;
         }
-        while(check) {
+        while(st_buffer_aud_vars.check) {
             if (ignored_com[i] == '}' || ignored_com[i] == ' ' || ignored_com[i] == '\0') {
-            buffer[buffer_count] = ignored_com[i];
-            check = false;
-            buffer_count++;
-            buffer[buffer_count] = '|';
-            buffer_count++;
-            break;
-
+                buffer_count =  mx_count_buf_aud(buffer_count, buffer, ignored_com, i);
+                st_buffer_aud_vars.check = false;
+                break;
             } else {
                 buffer[buffer_count] = ignored_com[i];
                 i++;
@@ -51,21 +55,10 @@ static char **fill_vars_arr(char **change_var, char *ignored_com, char **buffer_
             } 
         }
     }
-     if (buffer[mx_strlen(buffer) - 1] == '|')
+    if (buffer[mx_strlen(buffer) - 1] == '|')
         buffer[mx_strlen(buffer) - 1] = '\0';
-
     buffer_split = mx_strsplit(buffer, '|');
-    while (buffer_split[te]) {
-        for (int i = 0; i < mx_strlen(buffer_split[te]); i++) {
-            if (buffer_split[te][i] != '$' && buffer_split[te][i] != '{' 
-                && buffer_split[te][i] != '}' && buffer_split[te][i] != ' ') {
-                change_var[te][small_count] = buffer_split[te][i];
-                small_count++;
-            }
-        }
-        te++;
-        small_count = 0;
-    }
+    buffer_split = buffer_split_aud(buffer_split, st_buffer_aud_vars, change_var);
     buffer_vars = NULL;
     return buffer_split;
 }

@@ -57,6 +57,12 @@ typedef struct s_buffer_aud {
     int count_double_bracks;
 } t_buffer_aud;
 
+typedef struct s_buffer_aud_vars {
+    int te;
+    bool check;
+    int small_count;
+} t_buffer_aud_vars;
+
 char **mx_errors_cd (char **inp_line, t_errors_cd *errors, t_flags_cd *flags_cd);
 char **mx_mystrsplit(const char *s, char c);
 void mx_e_too_many_arg_cd (char **splited_arg, t_errors_cd *errors, t_flags_cd *flags_cd);
@@ -107,5 +113,8 @@ bool mx_check_main_if_aud(int i, int *indexes_double_bracks,
                           int count_double_bracks, int count, char **splited_inp);
 t_buffer_aud mx_init_aud_struct();
 char *mx_res_aud_str(char *res_str, char *buffer_replace);
-
+int mx_count_buf_aud(int buffer_count, char *buffer, char *ignored_com, int i);
+char **buffer_split_aud(char **buffer_split, t_buffer_aud_vars st_buffer_aud_vars, char **change_var);
+void mx_main_loop_aud(t_ignored_symb ignored_struct, int *single_indexes, int *indexes_double_bracks,
+                      t_buffer_aud counters_aud, char **splited_inp, char **ignored_inp);
 #endif

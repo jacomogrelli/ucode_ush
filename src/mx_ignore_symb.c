@@ -63,40 +63,10 @@ char **mx_ignore_symb (char **splited_inp) {
         ignored_struct.ign_count = 0;
         indexes_double_bracks = mx_indexes_double_bracks(splited_inp[ignored_struct.count]);
         counters_aud.count_single = init_single_indexes(splited_inp[ignored_struct.count]);
-        single_indexes = fill_single_indexes(counters_aud.count_single, splited_inp[ignored_struct.count]);
-        for (int i = 0; i < mx_strlen(splited_inp[ignored_struct.count]); i++) {
-            if (i == single_indexes[counters_aud.j + 1] && counters_aud.j < counters_aud.count_single)
-                counters_aud.j++;
-            if (i > single_indexes[counters_aud.j] && i < single_indexes[counters_aud.j + 1]) {
-                ignored_struct.ign_count = mx_aud_for_ignore(ignored_inp, splited_inp, 
-                                            ignored_struct.count, ignored_struct.ign_count, i);
-                continue;
-            }
-            if (splited_inp[ignored_struct.count][i] == '\\') {
-                if (mx_check_main_if_aud(i, indexes_double_bracks, counters_aud.count_double_bracks,
-                    ignored_struct.count, splited_inp)) {
-                ignored_struct.ign_count = mx_aud_for_ignore(ignored_inp, splited_inp, 
-                    ignored_struct.count, ignored_struct.ign_count, i);
-            }
-            else {
-                if (splited_inp[ignored_struct.count][i + 1] == ' ' 
-                    && splited_inp[ignored_struct.count][i - 1] != '\\' ) {
-                    i++;
-                    ignored_inp[ignored_struct.count][ignored_struct.ign_count] = '#';
-                    ignored_struct.ign_count++;
-                }
-                else {
-                    i++;
-                    ignored_struct.ign_count = mx_aud_for_ignore(ignored_inp, splited_inp, 
-                        ignored_struct.count, ignored_struct.ign_count, i);
-                    }
-                }
-            }
-            else {
-                ignored_struct.ign_count = mx_aud_for_ignore(ignored_inp, splited_inp, 
-                    ignored_struct.count, ignored_struct.ign_count, i);
-            }
-        }
+        single_indexes = fill_single_indexes(counters_aud.count_single,
+            splited_inp[ignored_struct.count]);
+        mx_main_loop_aud(ignored_struct, single_indexes, indexes_double_bracks,
+                      counters_aud, splited_inp, ignored_inp);
         free(indexes_double_bracks);
         ignored_struct.count++;
         free(single_indexes);
