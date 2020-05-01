@@ -67,7 +67,6 @@ SRC		=	main.c \
 			mx_main_parse.c \
 			mx_ignore_symb.c \
 			mx_second_parse.c \
-			mx_or_and.c \
 			mx_parser_var.c \
 			mx_parser_array.c \
 			mx_env_flags.c \
