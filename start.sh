@@ -1,1 +1,1 @@
-diff <(echo 'S1' | ./ush) <(echo 'S1' | zsh)
+diff <(./ush $1) <(zsh $1)

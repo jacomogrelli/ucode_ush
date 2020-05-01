@@ -31,6 +31,10 @@ static t_envp *envp_gethomelvl(int flag, t_envp *res) {
         setenv("_", "env", 1);
         mx_envp_add(&res, "_=env");
     }
+    if (flag == 4) {
+        struct passwd *pw = getpwuid(getuid());
+        setenv("LOGNAME", pw->pw_name, 1);
+    }
     return res;
 }
 
@@ -69,5 +73,7 @@ t_envp *mx_envp_i_fill(void) {
         res = envp_gethomelvl(3, res);
     if (!(getenv("PATH")))
         res = envp_getpath(res);
+    if (!getenv("LOGNAME"))
+        res = envp_gethomelvl(4, res);
     return res;
 }
