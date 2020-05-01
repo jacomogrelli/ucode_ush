@@ -1,37 +1,5 @@
 #include "ush.h"
 
-// static void change_til(char **str) {
-//     char *get_home = getenv("HOME");
-//     char *get_pwd = getenv("PWD");
-//     char *get_old_pwd = getenv("OLDPWD");
-//     int count = 0;
-
-//     while (str[count]) {
-//         if (mx_strcmp(str[count], "~") == 0)
-//             str[count] = mx_my_repl_substr(str[count], "~", get_home);
-//         if (mx_strcmp(str[count], "~+") == 0)
-//             str[count] = mx_my_repl_substr(str[count], "~+", get_pwd);
-//         if (mx_strcmp(str[count], "~-") == 0)
-//         str[count] = mx_my_repl_substr(str[count], "~-", get_old_pwd);
-//         count++;
-//     }
-// }
-
-// static void e_flag_echo(char *splited_str) {
-//     char *buf = mx_strnew(mx_strlen(splited_str));
-//     int count = 0;
-
-//     for (int i = 0; i < mx_strlen(splited_str); i++) {
-//        if(splited_str[i] == '\\') {
-//             i++;
-//         }
-//         buf[count] = splited_str[i];
-//         count++;
-//     }
-//     printf("%s", buf);
-//     free(buf);
-// }
-
 static void init_flags_echo(char **splited_input, t_flags_echo *flags_echo) {
     flags_echo->act_flag = false;
     flags_echo->E_flag = false;
