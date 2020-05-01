@@ -51,6 +51,12 @@ typedef struct s_vars {
     char *get_from_env;
 } t_vars;
 
+typedef struct s_buffer_aud {
+    int count_single;
+    int j;
+    int count_double_bracks;
+} t_buffer_aud;
+
 char **mx_errors_cd (char **inp_line, t_errors_cd *errors, t_flags_cd *flags_cd);
 char **mx_mystrsplit(const char *s, char c);
 void mx_e_too_many_arg_cd (char **splited_arg, t_errors_cd *errors, t_flags_cd *flags_cd);
@@ -68,7 +74,8 @@ int mx_my_count_words(const char *str, char c);
 void mx_parse_flags_cd (char **splited_arg, t_flags_cd *flags_cd);
 void mx_run_cd_commnd(t_envp *var, char **splited_input);
 void mx_cd_without_flags(char **splited_arg, t_dirs_cd *dirs_cd);
-void mx_cd_with_flags(char **splited_arg, t_dirs_cd *dirs_cd, t_flags_cd *flags_cd, t_errors_cd *errors);
+void mx_cd_with_flags(char **splited_arg, t_dirs_cd *dirs_cd, 
+                      t_flags_cd *flags_cd, t_errors_cd *errors);
 void mx_set_correct_path();
 void mx_run_echo_command(t_envp *var, char **splited_input);
 void mx_print_e_for_echo(char *str);
@@ -95,5 +102,11 @@ char *mx_del_brack(char * ignored_com);
 char **mx_or_and(char *ignored_brack);
 char *mx_change_var(char *ignored_com, t_envp *var);
 int *mx_indexes_double_bracks(char *str);
+int mx_aud_for_ignore(char **ignored_inp, char **splited_inp, int first_count,
+                      int second_count, int third_count);
+bool mx_check_main_if_aud(int i, int *indexes_double_bracks, 
+                          int count_double_bracks, int count, char **splited_inp);
+t_buffer_aud mx_init_aud_struct();
+char *mx_res_aud_str(char *res_str, char *buffer_replace);
 
 #endif

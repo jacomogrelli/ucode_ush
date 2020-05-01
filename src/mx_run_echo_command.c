@@ -41,10 +41,18 @@ static char *join_for_echo(char **splited_input, t_flags_echo *flags_echo) {
     return buff;
 }
 
-// static void if_no_flag_aud() {
+static void if_str_aud(char *str) {
+    if (str)
+        printf("%s", str);
+    else
+        printf("%s", "\n");    
+}
 
-// }
+static void free_arrs_aud(char *splited_str, t_flags_echo *flags_echo) {
+    free(flags_echo);
+    free(splited_str);
 
+}
 void mx_run_echo_command(t_envp *var, char **splited_input) {
     t_flags_echo *flags_echo = (t_flags_echo *)malloc(sizeof(t_flags_echo));
     char *splited_str = NULL;
@@ -54,12 +62,8 @@ void mx_run_echo_command(t_envp *var, char **splited_input) {
         printf("%c",'\n');
     else {
         splited_str = join_for_echo(splited_input, flags_echo);
-        if (!flags_echo->act_flag || flags_echo->n_flag) {
-            if (splited_str)
-                printf("%s", splited_str);
-            else
-                printf("%s", "\n");
-        }
+        if (!flags_echo->act_flag || flags_echo->n_flag)
+            if_str_aud(splited_str);
         else {
             if (flags_echo->E_flag)
                 printf("%s",splited_str);
@@ -69,7 +73,6 @@ void mx_run_echo_command(t_envp *var, char **splited_input) {
         if (!flags_echo->n_flag)
             printf("%s", "\n");
     }
-    free(flags_echo);
-    free(splited_str);
+    free_arrs_aud(splited_str, flags_echo);
     mx_envp_replace(&var, "?=0");
 }

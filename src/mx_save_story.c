@@ -16,16 +16,6 @@ t_history *mx_init_story() {
     return history;
 }
 
-// void mx_free_story(t_history *history) {
-//     int count = 0;
-//     while (history->value[count]) {
-//         free(history->value[count]);
-//         count++;
-//     }
-//     free(history->value);
-//     free(history);
-// }
-
 void mx_save_story(char *input_line, t_history *history) {
     history->value[history->count] = mx_strnew(mx_strlen(input_line));
     history->value[history->count] = mx_strcpy(history->value[history->count],
@@ -51,6 +41,4 @@ void mx_print_strory(t_envp *var, t_history *history) {
         history->nuber_line++;
     }
     mx_envp_replace(&var, "?=0");
-    // mx_free_story(history);
-    // mx_init_story();
 }
