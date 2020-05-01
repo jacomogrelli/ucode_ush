@@ -1,7 +1,5 @@
 #include "ush.h"
 
-//лики не проверены
-
 static void pwd_default(void) {
     char *res = strdup(getenv("PWD"));
 

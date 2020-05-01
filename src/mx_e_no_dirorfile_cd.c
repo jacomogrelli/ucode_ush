@@ -24,7 +24,8 @@ static void prem_denied(char **splited_arg, t_errors_cd *errors) {
     }
 }
 
-void mx_e_no_dirorfile_cd (char **splited_arg, t_errors_cd *errors, t_flags_cd *flags_cd) {
+void mx_e_no_dirorfile_cd (char **splited_arg, t_errors_cd *errors,
+                           t_flags_cd *flags_cd) {
     int count = 0;
     errno = 0;
 

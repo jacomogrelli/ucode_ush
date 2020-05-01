@@ -1,6 +1,7 @@
 #include "ush.h"
 
-void mx_e_too_many_arg_cd (char **splited_arg, t_errors_cd *errors, t_flags_cd *flags_cd) {
+void mx_e_too_many_arg_cd (char **splited_arg, t_errors_cd *errors,
+                           t_flags_cd *flags_cd) {
     int count = 0;
 
     if (errors->returned_value == 0) {

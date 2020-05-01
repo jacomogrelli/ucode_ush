@@ -72,9 +72,6 @@ void mx_envp_add(t_envp **res, char *data) {
         head = head->next;
     }
     head->next = buf;
-    //заталкиваем в начало
-    // buf->next = *res;
-    // *res = buf;
 }
 
 t_envp *mx_envp_fill(char **envp) {

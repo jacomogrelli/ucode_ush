@@ -1,6 +1,7 @@
 #include "ush.h"
 
-char **mx_errors_for_comands(char **splited_input, t_flags_cd *flags_cd, t_errors_cd *errors) {
+char **mx_errors_for_comands(char **splited_input, t_flags_cd *flags_cd,
+                             t_errors_cd *errors) {
     errors->returned_value = 0;
     char **splited_arg = NULL;
 

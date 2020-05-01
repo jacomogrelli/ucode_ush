@@ -29,7 +29,6 @@ void mx_env_modechoose(t_envp *var, char **com,int *pos) {
         mx_env_main_empty();
         return;
     }
-    // var = mx_envp_i_fill();
     for (;com[(*pos)]; (*pos)++, com_count++);
     (*pos) -= com_count;
     com_new = malloc(sizeof(char *) * com_count);

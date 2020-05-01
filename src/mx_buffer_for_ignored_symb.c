@@ -1,6 +1,5 @@
 #include "ush.h"
 
-
 int *mx_indexes_double_bracks(char *str) {
     int count_bracks = 0;
 

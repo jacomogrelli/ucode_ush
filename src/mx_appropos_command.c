@@ -17,12 +17,12 @@ static void error_one(t_envp *var) {
         mx_envp_replace(&var, "?=1");
 }
 
-static int main_llop_apropos(char **com, char **commands, bool find, int count) {
+static int main_llop_apropos(char **com, char **comms, bool find, int count) {
     for (int i = 1; com[i]; i++) {
         find = false;
-        for(int j = 0; commands[j]; j++)
-            if (mx_strcmp(com[i], commands[j]) == 0) {
-                print_inside_apropos(j, commands);
+        for(int j = 0; comms[j]; j++)
+            if (mx_strcmp(com[i], comms[j]) == 0) {
+                print_inside_apropos(j, comms);
                 count++;
                 find = true;
             }

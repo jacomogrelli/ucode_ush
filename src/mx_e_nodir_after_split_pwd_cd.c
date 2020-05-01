@@ -18,7 +18,8 @@ static void print_errors(char *res_str, t_errors_cd *errors) {
     }
 }
 
-void mx_e_nodir_after_split_pwd_cd(char **splited_arg, t_errors_cd *errors, t_flags_cd *flags_cd) {
+void mx_e_nodir_after_split_pwd_cd(char **splited_arg, t_errors_cd *errors,
+                                   t_flags_cd *flags_cd) {
     int count = 0;
     char *res_str = NULL;
     int count_arg = 2;
@@ -34,7 +35,8 @@ void mx_e_nodir_after_split_pwd_cd(char **splited_arg, t_errors_cd *errors, t_fl
             count++;
         }
         if (count == count_arg) {
-            res_str = mx_my_repl_substr_cd(splited_arg[which_arg], splited_arg[which_arg + 1]);
+            res_str = mx_my_repl_substr_cd(splited_arg[which_arg],
+                                           splited_arg[which_arg + 1]);
             print_errors(res_str, errors);
             free(res_str);
         }
