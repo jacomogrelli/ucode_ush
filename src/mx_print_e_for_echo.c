@@ -2,12 +2,12 @@
 
 void mx_print_e_for_echo(char *str) {
     for (int i = 0; i < mx_strlen(str); i++) {
-        if (str[i] == '\\') {
+        if (str[i] == '\\' && str[i - 1] != ':') {
             if (str[i + 1] > 0 && str[i + 1] < 14) {
                 printf("%c", str[i + 1]);
                 i++;
             }
-            else {
+            else if (str[i - 1] != ':'){
                 i++;
                 printf("%c", str[i]);
             }

@@ -109,9 +109,6 @@ void mx_ush_init(t_envp *var) {
         }
         if (!mx_cal_history(var, res, history)) {
             mx_pwd_replace(&res->iline);
-            // res->iline = check_pwd(res->iline);
-            // res->iline = check_second_pwd(res->iline);
-            // printf("%s", res->iline);
             res->com = mx_mystrsplit(mx_strtrim(res->iline), ';');
             //for (;res->com[res->i]; res->i++) {
                 do_next = true;
@@ -122,10 +119,10 @@ void mx_ush_init(t_envp *var) {
                     res->ignored_com[count_com] = mx_parser_tilda(res->ignored_com[count_com]);
                     res->ignored_brack = mx_second_parse(res->ignored_com[count_com]);
                     res->change_var = mx_change_var(res->ignored_brack, var);
-                    res->splited_or_and = mx_or_and(res->change_var);
-                    res->count_logic = 0;
+                    //res->splited_or_and = mx_or_and(res->change_var);
+                    //res->count_logic = 0;
                     //while (res->splited_or_and[res->count_logic]) {
-                        res->solo_com = mx_strsplit(res->change_var, ' ');
+                        res->solo_com = mx_strsplit(mx_strtrim(res->change_var), ' ');
                         reverse_space(res->solo_com);
                         mx_get_command(var, res->solo_com);
                         //res->count_logic++;

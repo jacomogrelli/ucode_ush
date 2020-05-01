@@ -58,6 +58,7 @@ char **mx_ignore_symb (char **splited_inp) {
     int j = 0;
     int *indexes_double_bracks = NULL;
     int count_double_bracks = 0;
+
     while (splited_inp[ignored_struct.count]) {
         count_double_bracks = 0;
         indexes_double_bracks = mx_indexes_double_bracks(splited_inp[ignored_struct.count]);
