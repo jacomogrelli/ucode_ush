@@ -17,5 +17,5 @@ void mx_get_command(t_envp *var, char **com) {
             (*bin_f[i])(var, com);
             return;
         }
-    mx_run_exec(com, var);
+    mx_run_exec(com, var)
 }
