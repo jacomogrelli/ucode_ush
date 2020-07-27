@@ -20,4 +20,5 @@ int mx_atoi(const char *str) {
         i++;
     }
     return res * sing;
+
 }
