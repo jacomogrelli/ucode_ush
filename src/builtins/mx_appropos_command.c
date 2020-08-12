@@ -34,6 +34,7 @@ static int main_llop_apropos(char **com, char **comms, bool find, int count) {
     return count;
 }
 
+
 void mx_apropos_command(t_envp *var, char **com) {
     int count = 0;
     bool find = false;

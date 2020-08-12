@@ -49,16 +49,18 @@ MKDIR		= mkdir -p
 RM			= /bin/rm -rf
 
 # checking if libs are up to date
-all: $(LIB_LIST) $(NAME)
+all: $(LIB_LIST) $(LIB_BIN) $(NAME)
 
 # LIB_BIN for libs dependency
 $(NAME): $(LIB_BIN) $(OBJ_DIR) $(OBJ)
 	@$(COMPILE) $(OBJ) -lmx -o $(NAME)
 	@printf "\r\33[2K$@ \033[32;1mcreated\033[0m\n"
 
+$(LIB_BIN): $(LIB_LIST)
+
 # make for all libs
 $(LIB_LIST): $(LIB_DIRS)
-	@$(MAKE_M) $(LIB_DIR)/$@
+	@$(MAKE_M) $(LIB_DIR)/$(LIB_LIST)
 
 # make dirs for obj files
 $(OBJ_DIR):
