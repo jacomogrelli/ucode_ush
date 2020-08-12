@@ -10,4 +10,5 @@ char *mx_strndup(const char *s1, size_t n) {
     else
         mem = mx_strnew(n);
     return mx_strncpy(mem, s1, n);
+
 }
