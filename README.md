@@ -5,7 +5,7 @@
 
 This is simple command line interpreter for Unix written in C.
 
-**Developers**:
+**Developers**
 [Oleksiy Nechaiev](https://github.com/jacomogrelli)
 [Yaroslav Pratsyovitiy](https://github.com/Eimer)
 
