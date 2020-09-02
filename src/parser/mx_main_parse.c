@@ -6,8 +6,9 @@ static void trim_input(char **splited_inp) {
     while (splited_inp[count]) {
         splited_inp[count] = mx_strtrim(splited_inp[count]);
         count++;
-    }   
+    }
 }
+
 
 char **mx_main_parse (char **splited_inp) {
     char **res_inp = NULL;
@@ -15,4 +16,3 @@ char **mx_main_parse (char **splited_inp) {
     res_inp = mx_ignore_symb(splited_inp);
     return res_inp;
 }
-

@@ -6,8 +6,8 @@
 This is simple command line interpreter for Unix written in C.
 
 **Developers**:
-    [Oleksiy Nechaiev](https://github.com/jacomogrelli)
-    [Yaroslav Pratsyovitiy](https://github.com/Eimer)
+[Oleksiy Nechaiev](https://github.com/jacomogrelli)
+[Yaroslav Pratsyovitiy](https://github.com/Eimer)
 
 Use `make` or `make ush` to install and `./ush` to start shell.
 `make uninstall` - uninstall shell
